@@ -1,0 +1,32 @@
+node_modules/
+dist/
+build/
+coverage/
+.turbo/
+.next/
+.vercel/
+
+.env
+.env.*
+!.env.example
+
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+.DS_Store
+Thumbs.db
+
+# Aiken
+packages/contracts/build/
+packages/contracts/artifacts/
+
+# Secrets and keys: never commit
+*.skey
+*.vkey
+*.addr
+secrets/
+keys/
+
+# Local chain artifacts that are environment-specific
+deployments/local.json
