@@ -57,6 +57,25 @@ importers:
         specifier: ^2.1.3
         version: 2.1.9(@types/node@22.20.1)
 
+  packages/sandbox:
+    dependencies:
+      '@veridict/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      '@types/node':
+        specifier: ^22.7.5
+        version: 22.20.1
+      '@vitest/coverage-v8':
+        specifier: ^2.1.3
+        version: 2.1.9(vitest@2.1.9(@types/node@22.20.1))
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.3
+        version: 2.1.9(@types/node@22.20.1)
+
   packages/shared:
     dependencies:
       '@noble/curves':
@@ -65,6 +84,31 @@ importers:
       '@noble/hashes':
         specifier: ^1.5.0
         version: 1.8.0
+      zod:
+        specifier: ^3.23.8
+        version: 3.25.76
+    devDependencies:
+      '@types/node':
+        specifier: ^22.7.5
+        version: 22.20.1
+      '@vitest/coverage-v8':
+        specifier: ^2.1.3
+        version: 2.1.9(vitest@2.1.9(@types/node@22.20.1))
+      typescript:
+        specifier: ^5.6.3
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.3
+        version: 2.1.9(@types/node@22.20.1)
+
+  packages/verdict:
+    dependencies:
+      '@veridict/sandbox':
+        specifier: workspace:*
+        version: link:../sandbox
+      '@veridict/shared':
+        specifier: workspace:*
+        version: link:../shared
       zod:
         specifier: ^3.23.8
         version: 3.25.76

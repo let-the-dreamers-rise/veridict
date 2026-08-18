@@ -1,0 +1,34 @@
+{
+  "network": "Preprod",
+  "recordedAt": "2026-08-18T13:44:20.828Z",
+  "scriptAddress": "addr_test1wq8fj8jmmj56r6sckrp40uex3uy8lkkr82xzut645jqm0nsh6qe3p",
+  "scriptHash": "0e991e5bdca9a1ea18b0c357f3268f087fdac33a8c2e2f55a481b7ce",
+  "oraclePublicKeyHex": "9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a",
+  "addresses": {
+    "poster": "addr_test1qr4ehl4aa6v4scv2q6z6wj5rw57zt9z9vznukjmpmy2e95zr0ynlwm8zguwens50a0k5jz0n2x67jhnmeggr829hk5ps3dysuf",
+    "worker": "addr_test1qzj6448mxyfqnu0zd2mx8q4c5ggr6xhfde3evmk043v2zs0rug26kkun36ttkzydc73kwpnxryyqqdygs595y82xtqcsx7sc75",
+    "treasury": "addr_test1qqj2j7sjst0zfp0tlsh0l7z6v45cxdmlyjxa4slmrlt2asrlwdmhvsd0v2nacc05casf6m4n3rg7wk65vrh3zlgy70vs8ge6ea"
+  },
+  "fundingTx": null,
+  "lifecycles": {
+    "passing": {
+      "criteriaHash": "74ecedc2f57b734c6b1a9ea0750355eac6cfd10941675fc5b6e131cc466ae1df",
+      "create": "09617a216a430615799ba55601ba3a55e075eda39d4117052ed562506e343d31",
+      "commit": "09a8acbaad5df6007c8855fa278b79928dc279945e14f4b4a647a40a540b7272",
+      "reveal": "ef0545e96196407fdef97a8ba1065dbc94b197f9d8a2a65ced845f2d4afeacea",
+      "resolve": "95805b36483f1cd376df0438e5e46c5f4dc4560df3e17e0cc4c50f27deb3fd5b",
+      "pass": true,
+      "scoreBps": 10000
+    },
+    "failing": {
+      "criteriaHash": "4f12e77fddef1e9bef9dcb63445baab240df9d21715414568a83639f9a361163",
+      "create": "11d62c13fd8c3360a889a706f64123d3c08650e7b2666f1a31f65d297748d6f9",
+      "commit": "5eae0f535fc40bef4d5950d0d5dcbaf4f4a0f1aa002abf62c46155c0f027bbf0",
+      "reveal": "4db07395a0f2e9f03df51abb61910407501363f55cdfd47b52f00b52a32f3b06",
+      "resolve": "fe3fda67c72d2d226dc1d3fb93ab1b3742c499c72db7227523b47f5305a00e3b",
+      "pass": false,
+      "scoreBps": 4200
+    }
+  },
+  "explorer": "https://preprod.cardanoscan.io/transaction/"
+}

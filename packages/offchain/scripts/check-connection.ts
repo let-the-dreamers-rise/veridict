@@ -1,0 +1,10 @@
+﻿import { connectPreprod } from "../src/provider.ts";
+import { escrowContext } from "../src/lifecycle.ts";
+const { lucid, keys } = await connectPreprod();
+const utxos = await lucid.wallet().getUtxos();
+const total = utxos.reduce((t, u) => t + (u.assets.lovelace ?? 0n), 0n);
+console.log("address:", keys.address);
+console.log("utxos:", utxos.length, "balance:", (Number(total) / 1e6).toFixed(6), "tADA");
+const ctx = escrowContext(lucid, "Preprod");
+console.log("script address:", ctx.scriptAddress);
+console.log("script hash:", ctx.scriptHash);
