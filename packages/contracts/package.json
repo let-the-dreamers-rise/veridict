@@ -1,0 +1,13 @@
+{
+  "name": "@veridict/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Aiken validators: bounty escrow and verdict registry.",
+  "scripts": {
+    "build": "aiken build",
+    "test": "aiken check",
+    "typecheck": "aiken check",
+    "docs": "aiken docs"
+  }
+}
