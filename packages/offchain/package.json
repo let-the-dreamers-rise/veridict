@@ -1,0 +1,34 @@
+{
+  "name": "@veridict/offchain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Transaction builders for the Veridict escrow: datum encoding, lifecycle transactions, and preprod deployment.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "wallet:new": "node --experimental-strip-types scripts/new-wallet.ts",
+    "deploy:preprod": "node --experimental-strip-types scripts/deploy-preprod.ts",
+    "lifecycle:preprod": "node --experimental-strip-types scripts/run-lifecycle.ts"
+  },
+  "dependencies": {
+    "@lucid-evolution/lucid": "^0.4.29",
+    "@veridict/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3",
+    "@vitest/coverage-v8": "^2.1.3"
+  }
+}
