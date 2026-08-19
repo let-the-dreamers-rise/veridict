@@ -106,8 +106,12 @@ not there.
 Verifiable evidence, since a solo applicant with no company history should be
 checked rather than believed:
 
-- This repository, with the complete commit history of the work described.
-- The Preprod deployment and every transaction listed in section 9.
+- **https://github.com/let-the-dreamers-rise/veridict** — the complete source
+  and commit history of the work described here.
+- The Preprod deployment and every transaction listed in section 9, each
+  openable in a public explorer.
+- The verifier in `apps/verifier-cli`, which anyone can run against those
+  transactions using their own Blockfrost key, with no dependency on us.
 - Public ARC Prize competition participation.
 
 **What this team is not.** No prior exits, no venture funding, no delivered
@@ -287,10 +291,22 @@ The verdict said the submission did not meet the agreed criteria, and the chain
 refused to release the reward. The funds are still locked at the script address
 in state `Resolved`. Anyone can verify that without trusting us.
 
+**Verify it without trusting us.** `apps/verifier-cli` reads the oracle key from
+the datum locked at bounty creation, pulls the verdict out of the spending
+transaction's redeemer, rebuilds the digest from the bounty's output reference,
+and checks the signature — using a public chain indexer and nothing else. Run
+against the failing resolution it reports:
+
+> signature valid: yes · criteria bound: yes · funds released: no, still in contract
+> **VERIFIED: the oracle key named in the bounty signed this failing verdict, and the reward was withheld.**
+
 **Tests:** 86 unit tests on the signing and encoding primitives; 6 Aiken tests
 asserting the on-chain digest matches the off-chain signer byte for byte; 7
 emulator tests running the full lifecycle plus three forgery attempts against
 the real compiled validator.
+
+**Source:** https://github.com/let-the-dreamers-rise/veridict
+**Baseline commit frozen at submission:** `4e6b74b`
 
 ---
 

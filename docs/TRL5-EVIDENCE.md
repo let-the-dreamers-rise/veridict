@@ -190,5 +190,8 @@ capability, **not** as work to be funded. The grant funds only what follows.
 
 | Item | Value |
 |---|---|
-| Baseline commit | `18e0baa` |
-| Repository | (public URL to be added at submission) |
+| Baseline commit | `4e6b74b` |
+| Repository | https://github.com/let-the-dreamers-rise/veridict |
+
+Every commit predates submission and is timestamped publicly, so the boundary
+between prior work and funded work is checkable rather than asserted.
