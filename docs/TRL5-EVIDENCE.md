@@ -116,6 +116,55 @@ and a verdict issued for a different submission.
 
 ---
 
+## 5a. Verify it yourself, without trusting us
+
+The verifier reads public chain data only. It never contacts a Veridict service,
+because a verification tool that trusts the party being verified proves nothing.
+Any Blockfrost project id works, including one that has never heard of this
+project.
+
+```bash
+cd apps/verifier-cli
+export BLOCKFROST_PROJECT_ID=your_own_preprod_key
+npx tsx src/cli.ts fe3fda67c72d2d226dc1d3fb93ab1b3742c499c72db7227523b47f5305a00e3b
+```
+
+Actual output for the failing resolution:
+
+```
+  oracle key (datum)     9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a
+  criteria hash          4f12e77fddef1e9bef9dcb63445baab240df9d21715414568a83639f9a361163
+  submission hash        3e3109adef83a2f5093b45579d42affeba316882be33efe4490797eacdb23d05
+  verdict digest         fffa192480071460291103a1d2a6a1ed9454223156121a1282bfd64f54a7e4de
+
+  verdict                FAIL
+  score                  4200 bps
+
+  signature valid        yes
+  criteria bound         yes
+  funds released         no, still in contract
+
+VERIFIED: the oracle key named in the bounty signed this failing verdict,
+and the reward was withheld.
+```
+
+And for the passing resolution `95805b36...`:
+
+```
+  verdict                PASS
+  score                  10000 bps
+  signature valid        yes
+  funds released         yes
+```
+
+The tool rebuilds the verdict digest from the bounty's own output reference,
+reads the oracle key from the datum that was locked when the bounty was created,
+and checks the Ed25519 signature. It also cross-checks the outcome against the
+money: a passing verdict must release funds and a failing one must not, and it
+reports an inconsistency if the contract ever said one thing and did another.
+
+---
+
 ## 6. Security properties implemented
 
 Each is implemented in the validator with the attack named at the point of

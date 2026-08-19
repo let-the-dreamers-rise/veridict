@@ -1,0 +1,23 @@
+{
+  "name": "@veridict/verifier-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Independently verify a Veridict verdict from public chain data alone.",
+  "bin": {
+    "veridict-verify": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "verify": "node --experimental-strip-types src/cli.ts"
+  },
+  "dependencies": {
+    "@lucid-evolution/lucid": "^0.4.29",
+    "@veridict/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "typescript": "^5.6.3"
+  }
+}
