@@ -24,7 +24,8 @@ automatic, criteria-based, and verifiable by both sides.
 
 ## How it works
 
-1. **Post.** The poster writes a spec in plain language and stakes the reward.
+1. **Post.** The poster writes a spec in plain language and stakes a reward
+   **denominated in dollars**, not ADA.
 2. **Compile.** The spec is turned into an explicit list of checkable criteria.
    **The poster reviews and approves it before any money is locked**, and the
    approved criteria hash is committed on chain. The standard cannot change
@@ -35,23 +36,39 @@ automatic, criteria-based, and verifiable by both sides.
    file checks, schema checks, hashes. Only the genuinely subjective residual
    goes to bounded judgment against the fixed rubric.
 5. **Verdict.** A signed verdict is published with a Merkle root over the
-   per-criterion evidence. The escrow releases the reward on a pass, or keeps it
-   in the contract on a fail so the worker can appeal.
+   per-criterion evidence. On a pass the escrow reads an ADA/USD price feed as a
+   reference input and pays the dollar amount in ADA at the settlement price. On
+   a fail it keeps the funds so the worker can appeal.
 
-No human approves the payout. The criteria decide.
+No human approves the payout. The criteria decide, and the price decides the
+amount.
+
+### Why the dollar denomination matters
+
+ADA moves between the moment a bounty is posted and the moment it is finished. A
+bounty fixed in ADA quietly turns into a different offer: the poster overpays
+when ADA rises, and the worker is shortchanged when it falls. Pricing at
+settlement keeps the promise the poster actually made.
+
+The stake is a ceiling. If ADA falls far enough that the dollar amount exceeds
+what was staked, the worker receives everything available rather than a promise
+the escrow cannot honour. If ADA rises, the surplus returns to the poster
+instead of becoming a windfall for whoever submits the transaction.
 
 ## What is actually deployed
 
-Two complete lifecycles ran on Cardano Preprod. Full list with explorer links:
+Complete lifecycles on Cardano Preprod. Full list with explorer links:
 [`docs/TRL5-EVIDENCE.md`](docs/TRL5-EVIDENCE.md).
 
-The one worth opening is the **failing** verdict:
-[`fe3fda67...`](https://preprod.cardanoscan.io/transaction/fe3fda67c72d2d226dc1d3fb93ab1b3742c499c72db7227523b47f5305a00e3b).
-The verdict said the work did not meet the criteria, and the chain refused to
-release the reward. 25 tADA is still locked at the script address. That refusal,
-visible to anyone, is the entire product.
+A **$12.00** bounty settled at **exactly 30.000000 tADA**, priced at $0.40 per
+ADA by a feed the resolution read as a reference input:
+[`f76999d7...`](https://preprod.cardanoscan.io/transaction/f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1)
 
-**Script address:** `addr_test1wq8fj8jmmj56r6sckrp40uex3uy8lkkr82xzut645jqm0nsh6qe3p`
+And the one worth opening for what it refuses to do: a **failing** verdict, where
+the chain declined to release the reward and the funds stayed in the contract.
+That refusal, visible to anyone, is the entire product.
+
+**Script address:** `addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n`
 
 ## Honest status
 
@@ -75,6 +92,7 @@ visible to anyone, is the entire product.
 | `packages/offchain` | Transaction builders, emulator suite, preprod deployment |
 | `packages/verdict` | Criteria compiler, evaluator, replay bundles, signer |
 | `packages/sandbox` | Isolated execution of untrusted submissions |
+| `apps/verifier-cli` | Independent verification from public chain data alone |
 
 ## Running it
 
@@ -102,6 +120,11 @@ if either drifts, the build fails.
 contract so the worker has something to appeal about. A pass pays out and
 closes. The poster's protection is not a veto, it is that they approved the
 criteria before any money moved.
+
+**The feed is identified by its NFT, not its address.** An address can be
+imitated; a token under the oracle's own policy cannot. An expired feed fails the
+transaction rather than being used, because a stale price silently misprices a
+payout, which is worse than no price at all.
 
 **Prompt injection never auto-passes.** The rubric is hashed and committed
 before any submission is read, submissions are quoted as data behind an

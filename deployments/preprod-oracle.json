@@ -1,0 +1,43 @@
+{
+  "network": "Preprod",
+  "recordedAt": "2026-08-21T20:20:23.236Z",
+  "scriptAddress": "addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n",
+  "scriptHash": "30da5ba8797fc4e34c53b4bb796ec26b2b2769662d06a353d531a1db",
+  "oraclePublicKeyHex": "9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a",
+  "feed": {
+    "note": "Stand-in feed in the Charli3 datum shape. The public preprod ADA/USD feed last updated 2026-03-01 and its statements expire 30 minutes after publication, so it cannot satisfy the validator's freshness check. Mainnet uses a live provider.",
+    "policyId": "1b0af510019c99df989a5e5e166d6ac34eba2a9b290860b42a9de30f",
+    "assetName": "4f7261636c6546656564",
+    "unit": "1b0af510019c99df989a5e5e166d6ac34eba2a9b290860b42a9de30f4f7261636c6546656564",
+    "publishTx": "5f27b2d87fd8bd49cb51c2a02cc1495313b72a80b1e5f7562192b250edb79650",
+    "priceScale": "100000000",
+    "price": "40000000"
+  },
+  "bounty": {
+    "criteriaHash": "4428dc03a1c655124c329cd6cd05f14bcae84070681c3b1de9baca7ee6763c75",
+    "rewardUsdMicro": "12000000",
+    "stakeLovelace": "60000000",
+    "settledLovelace": "30000000"
+  },
+  "transactions": {
+    "create": "9c1e6ae6fe9c8e97eacf87310f6cb801fb122f6b26331560a048259098adb52d",
+    "commit": "c2ceeac5c0fa61397a17338032da5722d817b8144389e6459baec1c1fae58b3b",
+    "reveal": "8e2eee043dce1ae6abcd3aa25d3d61dd59de1c5897f7977a928e9a6e150ecf45",
+    "resolveConsumingFeed": "f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1"
+  },
+  "addresses": {
+    "poster": "addr_test1qr4ehl4aa6v4scv2q6z6wj5rw57zt9z9vznukjmpmy2e95zr0ynlwm8zguwens50a0k5jz0n2x67jhnmeggr829hk5ps3dysuf",
+    "worker": "addr_test1qzj6448mxyfqnu0zd2mx8q4c5ggr6xhfde3evmk043v2zs0rug26kkun36ttkzydc73kwpnxryyqqdygs595y82xtqcsx7sc75",
+    "treasury": "addr_test1qqj2j7sjst0zfp0tlsh0l7z6v45cxdmlyjxa4slmrlt2asrlwdmhvsd0v2nacc05casf6m4n3rg7wk65vrh3zlgy70vs8ge6ea"
+  },
+  "explorer": "https://preprod.cardanoscan.io/transaction/",
+  "failingLifecycle": {
+    "note": "Failing verdict on the same validator. The payout was withheld and the funds remain locked in state Resolved, where the worker can appeal.",
+    "criteriaHash": "aa101de4ebf992d92769f222b848644d2ec17bf93388141c513fdc24a7dae537",
+    "create": "a510617da0d7d92055ca60a82cb70103675b8be9fc5726d5e60b6dae9c1754ec",
+    "commit": "ad9a676aa48af2104775afa8c0ec6d8bc3b7c889825694c8ff2fcad2bfc3b096",
+    "reveal": "01676ba1d95bf49ca8ef57d73da2031dc36d895fa01e8f067e94b80a30c1eb00",
+    "resolveWithheld": "c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee",
+    "stillLockedLovelace": "25000000"
+  }
+}

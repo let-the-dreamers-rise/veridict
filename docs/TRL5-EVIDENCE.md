@@ -1,10 +1,10 @@
-# TRL 5 Evidence
+﻿# TRL 5 Evidence
 
 Every claim in the proposal, with the link that proves it. Nothing here requires
 trusting the author: each transaction can be opened in a public explorer, and
 the validator that governs them is in this repository.
 
-**Declared level: TRL 5** — "validated in a relevant environment", which the
+**Declared level: TRL 5** â€” "validated in a relevant environment", which the
 Catalyst brief defines as "deployed and working on a public Cardano testnet
 (Preview or Preprod), or live in another ecosystem".
 
@@ -19,50 +19,98 @@ decorated.
 | Item | Value |
 |---|---|
 | Network | Cardano **Preprod** |
-| Script address | `addr_test1wq8fj8jmmj56r6sckrp40uex3uy8lkkr82xzut645jqm0nsh6qe3p` |
-| Script hash | `0e991e5bdca9a1ea18b0c357f3268f087fdac33a8c2e2f55a481b7ce` |
+| Script address | `addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n` |
+| Script hash | `30da5ba8797fc4e34c53b4bb796ec26b2b2769662d06a353d531a1db` |
 | Plutus version | V3 |
-| Oracle public key | `9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a` |
+| Oracle signing key | `9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a` |
 | Source | [`packages/contracts/validators/bounty_escrow.ak`](../packages/contracts/validators/bounty_escrow.ak) |
 | Blueprint | [`packages/contracts/plutus.json`](../packages/contracts/plutus.json) |
 
 The script hash is derived from the compiled validator. Rebuilding the contracts
 from source reproduces it; nothing is pinned by hand.
 
+An earlier version of the validator, hash
+`0e991e5bdca9a1ea18b0c357f3268f087fdac33a8c2e2f55a481b7ce`, is still visible on
+Preprod from before oracle-priced settlement was added. It is noted here so a
+reviewer who finds it is not left reconciling two hashes; the evidence below is
+all against the current one.
+
 ---
 
-## 2. Lifecycle A: a passing verdict releases the reward
+## 1a. Oracle-priced settlement, the qualifying transaction
+
+The program counts a transaction only when the contract actually consumes the
+declared feed. This is that transaction.
+
+| Step | Transaction |
+|---|---|
+| Publish the price feed | `5f27b2d87fd8bd49cb51c2a02cc1495313b72a80b1e5f7562192b250edb79650` |
+| Create a $12.00 bounty, 60 tADA staked | `9c1e6ae6fe9c8e97eacf87310f6cb801fb122f6b26331560a048259098adb52d` |
+| Worker commits | `c2ceeac5c0fa61397a17338032da5722d817b8144389e6459baec1c1fae58b3b` |
+| Worker reveals | `8e2eee043dce1ae6abcd3aa25d3d61dd59de1c5897f7977a928e9a6e150ecf45` |
+| **Resolve, reading the feed as a reference input** | `f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1` |
+
+The bounty was denominated at **$12.00** and settled at **exactly 30.000000
+tADA**, because the feed reported $0.40 per ADA. The poster staked 60 tADA and
+the surplus returned to them: a poster advertises a dollar figure and does not
+overpay when ADA rises, nor leave the worker short when it falls.
+
+**Measured fees**, which the adoption arithmetic is built from rather than
+estimated:
+
+| Transaction | Fee (lovelace) |
+|---|---|
+| create | 178,217 |
+| commit | 460,818 |
+| reveal | 461,158 |
+| **resolve (qualifying)** | **482,295** |
+
+Only the resolution consumes the feed, so only its fee counts toward the oracle
+target. The other three are real activity and are deliberately excluded.
+
+### About the feed
+
+The feed above is ours, published in the Charli3 datum shape, and that is stated
+rather than glossed. The reason is a finding worth recording:
+
+| Feed | Last updated | Statement lifetime |
+|---|---|---|
+| Charli3 ADA/USD, **preprod** | 2026-03-01 | 30 minutes |
+| Charli3 ADA/USD, **mainnet** address in their docs | 2026-05-26 | 30 minutes |
+
+Both are long expired, so consuming either would fail the validator's freshness
+check. Weakening that check to make a demonstration pass would have been the
+wrong trade: a stale price silently misprices a payout. Mainnet therefore
+targets a live provider, and the mechanism is proven here against a feed that is
+actually fresh.
+
+---
+
+## 2. A failing verdict blocks the payout
 
 Explorer prefix: `https://preprod.cardanoscan.io/transaction/`
 
-| Step | Transaction |
-|---|---|
-| Create bounty, 25 tADA locked | `09617a216a430615799ba55601ba3a55e075eda39d4117052ed562506e343d31` |
-| Worker commits to a submission | `09a8acbaad5df6007c8855fa278b79928dc279945e14f4b4a647a40a540b7272` |
-| Worker reveals the submission | `ef0545e96196407fdef97a8ba1065dbc94b197f9d8a2a65ced845f2d4afeacea` |
-| Signed verdict resolves, worker paid | `95805b36483f1cd376df0438e5e46c5f4dc4560df3e17e0cc4c50f27deb3fd5b` |
-
-The reward moved to the worker and the protocol fee to the treasury, in one
-transaction, with no human approving the release.
-
----
-
-## 3. Lifecycle B: a failing verdict blocks the payout
+Same validator as section 1a, so both outcomes are evidenced against one script
+hash.
 
 | Step | Transaction |
 |---|---|
-| Create bounty, 25 tADA locked | `11d62c13fd8c3360a889a706f64123d3c08650e7b2666f1a31f65d297748d6f9` |
-| Worker commits to a submission | `5eae0f535fc40bef4d5950d0d5dcbaf4f4a0f1aa002abf62c46155c0f027bbf0` |
-| Worker reveals the submission | `4db07395a0f2e9f03df51abb61910407501363f55cdfd47b52f00b52a32f3b06` |
-| Signed verdict resolves as **fail** | `fe3fda67c72d2d226dc1d3fb93ab1b3742c499c72db7227523b47f5305a00e3b` |
+| Create bounty, 25 tADA staked | `a510617da0d7d92055ca60a82cb70103675b8be9fc5726d5e60b6dae9c1754ec` |
+| Worker commits | `ad9a676aa48af2104775afa8c0ec6d8bc3b7c889825694c8ff2fcad2bfc3b096` |
+| Worker reveals | `01676ba1d95bf49ca8ef57d73da2031dc36d895fa01e8f067e94b80a30c1eb00` |
+| Signed verdict resolves as **fail** | `c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee` |
 
 **This is the important one.** The verdict said the submission did not meet the
-agreed criteria, and the chain refused to release the reward. The 25 tADA is
-still locked at the script address in state `Resolved`, where the worker can
-appeal and the poster can be refunded once the window closes.
+agreed criteria, and the chain refused to release the reward. **25 tADA is still
+locked** at the script address in state `Resolved`, where the worker can appeal
+and the poster can be refunded once the window closes.
 
 A reviewer can confirm the funds are still there by querying the script address
 directly, without taking anyone's word for it.
+
+Note that the failing path does not read the price feed. There is nothing to
+price when no payout is computed, so that transaction is correctly **not**
+counted as a qualifying oracle transaction.
 
 ---
 
@@ -126,7 +174,7 @@ project.
 ```bash
 cd apps/verifier-cli
 export BLOCKFROST_PROJECT_ID=your_own_preprod_key
-npx tsx src/cli.ts fe3fda67c72d2d226dc1d3fb93ab1b3742c499c72db7227523b47f5305a00e3b
+npx tsx src/cli.ts c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee
 ```
 
 Actual output for the failing resolution:
@@ -195,3 +243,4 @@ capability, **not** as work to be funded. The grant funds only what follows.
 
 Every commit predates submission and is timestamped publicly, so the boundary
 between prior work and funded work is checkable rather than asserted.
+
