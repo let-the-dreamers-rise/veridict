@@ -29,7 +29,15 @@ export interface BountyDatum {
   readonly criteriaHash: string;
   readonly rewardPolicy: string;
   readonly rewardName: string;
+  /** Lovelace actually staked and held in the bounty UTxO. */
   readonly rewardAmount: bigint;
+  /** The bounty's real denomination: USD scaled by 1e6, so $50 is 50_000_000n. */
+  readonly rewardUsdMicro: bigint;
+  /** The oracle feed's own price scaling factor, declared rather than assumed. */
+  readonly priceScale: bigint;
+  /** NFT identifying the oracle feed UTxO. */
+  readonly oraclePolicy: string;
+  readonly oracleName: string;
   readonly deadline: bigint;
   readonly appealWindowMs: bigint;
   readonly protocolFeeBps: bigint;

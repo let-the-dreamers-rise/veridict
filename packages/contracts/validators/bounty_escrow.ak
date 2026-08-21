@@ -1,7 +1,11 @@
 use aiken/collection/list
+use aiken/interval.{Finite}
 use cardano/address.{Script}
 use cardano/assets.{quantity_of}
-use cardano/transaction.{InlineDatum, Output, OutputReference, Transaction, find_input}
+use cardano/transaction.{
+  InlineDatum, Output, OutputReference, Transaction, ValidityRange, find_input,
+}
+use veridict/oracle
 use veridict/tx
 use veridict/types.{
   Appeal, Appealed, BountyDatum, BountyRedeemer, BountyState, Cancel, Commit, Committed, Expire,
@@ -91,15 +95,47 @@ validator bounty_escrow {
         let fee = tx.protocol_fee(d.reward_amount, d.protocol_fee_bps)
 
         if v.pass {
-          // Passing closes the bounty: the worker is paid and nothing returns to
-          // the script.
+          // Every resolution reads the price feed, because the bounty is
+          // denominated in USD and the payout is only knowable at settlement.
+          // The feed is a reference input: read, never spent, so any number of
+          // bounties can settle against the same feed in the same block.
+          let feed =
+            oracle.find_feed(self.reference_inputs, d.oracle_policy, d.oracle_name)
+
+          // A stale price silently misprices a payout, which is worse than no
+          // price at all. Expired feeds fail the transaction instead.
+          expect oracle.is_fresh(feed, upper_bound_of(self.validity_range))
+
+          let priced =
+            oracle.usd_to_lovelace(
+              d.reward_usd_micro,
+              d.price_scale,
+              oracle.price_of(feed),
+            )
+
+          // The stake is a ceiling. If ADA fell since posting, the worker
+          // receives everything staked rather than a promise the escrow cannot
+          // honour; if ADA rose, the surplus returns to the poster instead of
+          // becoming a windfall for whoever submitted the transaction.
+          let available = reward_held - fee
+          let payout =
+            if priced > available {
+              available
+            } else {
+              priced
+            }
+
           let to_worker =
             tx.paid_to_key(self.outputs, worker, d.reward_policy, d.reward_name)
           let to_treasury =
             tx.paid_to_key(self.outputs, d.treasury, d.reward_policy, d.reward_name)
+          let to_poster =
+            tx.paid_to_key(self.outputs, d.poster, d.reward_policy, d.reward_name)
+
           and {
-            to_worker >= d.reward_amount - fee,
+            to_worker >= payout,
             to_treasury >= fee,
+            to_poster >= available - payout,
             list.length(tx.outputs_to_script(self.outputs, own_script)) == 0,
           }
         } else {
@@ -235,6 +271,18 @@ fn datum_unchanged_except_state(current: BountyDatum, next: BountyDatum) -> Bool
 
 fn value_preserved(continuing: Output, d: BountyDatum, reward_held: Int) -> Bool {
   quantity_of(continuing.value, d.reward_policy, d.reward_name) >= reward_held
+}
+
+/// The latest moment this transaction can be on chain.
+///
+/// Freshness is judged against the upper bound rather than the lower: if the
+/// transaction could still be accepted after the feed expires, the price it
+/// relies on might already be stale by the time it settles.
+fn upper_bound_of(range: ValidityRange) -> Int {
+  when range.upper_bound.bound_type is {
+    Finite(upper) -> upper
+    _ -> fail @"Resolving requires a bounded validity range"
+  }
 }
 
 fn not_appealed(state: BountyState) -> Bool {

@@ -32,7 +32,20 @@ pub type BountyDatum {
   criteria_hash: ByteArray,
   reward_policy: PolicyId,
   reward_name: AssetName,
+  /// Lovelace actually staked by the poster and held in this UTxO.
   reward_amount: Int,
+  /// The bounty's real denomination: USD scaled by 1,000,000, so $50 is
+  /// 50_000_000. The payout is computed from this at the oracle price when the
+  /// verdict resolves, which is why a poster can advertise a dollar amount
+  /// without carrying ADA volatility between posting and completion.
+  reward_usd_micro: Int,
+  /// The feed's own scaling factor, declared here rather than assumed, so a
+  /// change in feed precision cannot silently change what a bounty pays.
+  price_scale: Int,
+  /// NFT identifying the oracle feed UTxO. An address can be imitated; a token
+  /// under the oracle's own policy cannot.
+  oracle_policy: PolicyId,
+  oracle_name: AssetName,
   deadline: Int,
   appeal_window_ms: Int,
   protocol_fee_bps: Int,

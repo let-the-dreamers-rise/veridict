@@ -10,6 +10,7 @@ import {
 } from "@lucid-evolution/lucid";
 
 import { bountyEscrowScript } from "./blueprint.js";
+import { readFeed, usdToLovelace } from "./oracle.js";
 import { decodeDatum, encodeDatum, encodeRedeemer } from "./datum.js";
 import { ADA_NAME, ADA_POLICY, type BountyDatum, type OnChainVerdict } from "./types.js";
 
@@ -120,7 +121,15 @@ export interface CreateBountyParams {
   readonly arbiterAddress: string;
   readonly treasuryAddress: string;
   readonly criteriaHash: string;
+  /** Lovelace the poster stakes and locks. */
   readonly rewardLovelace: bigint;
+  /** What the bounty is actually worth: USD scaled by 1e6, so $50 is 50_000_000n. */
+  readonly rewardUsdMicro: bigint;
+  /** The oracle feed's price scaling factor. */
+  readonly priceScale: bigint;
+  /** Policy id and asset name of the NFT identifying the oracle feed UTxO. */
+  readonly oraclePolicy: string;
+  readonly oracleName: string;
   readonly deadline: number;
   readonly appealWindowMs: number;
   readonly protocolFeeBps: number;
@@ -137,6 +146,10 @@ export function initialDatum(params: CreateBountyParams): BountyDatum {
     rewardPolicy: ADA_POLICY,
     rewardName: ADA_NAME,
     rewardAmount: params.rewardLovelace,
+    rewardUsdMicro: params.rewardUsdMicro,
+    priceScale: params.priceScale,
+    oraclePolicy: params.oraclePolicy,
+    oracleName: params.oracleName,
     deadline: BigInt(params.deadline),
     appealWindowMs: BigInt(params.appealWindowMs),
     protocolFeeBps: BigInt(params.protocolFeeBps),
@@ -246,6 +259,15 @@ export interface ResolveParams {
   readonly signature: string;
   readonly workerAddress: string;
   readonly treasuryAddress: string;
+  readonly posterAddress: string;
+  /**
+   * The oracle feed UTxO, attached as a reference input.
+   *
+   * Required for a passing verdict, because the payout is denominated in USD
+   * and only knowable at the settlement price. It is read, never spent, so many
+   * bounties can settle against the same feed in the same block.
+   */
+  readonly oracleUtxo?: UTxO;
   readonly now: number;
   readonly timing?: TimingOptions;
 }
@@ -283,12 +305,31 @@ export async function resolveBounty(context: EscrowContext, params: ResolveParam
     .validTo(window.to);
 
   if (params.verdict.pass) {
-    const payout = datum.rewardAmount - feeLovelace;
-    const withPayout = builder.pay.ToAddress(params.workerAddress, { lovelace: payout });
-    const complete =
-      feeLovelace > 0n
-        ? withPayout.pay.ToAddress(params.treasuryAddress, { lovelace: feeLovelace })
-        : withPayout;
+    if (params.oracleUtxo === undefined) {
+      throw new Error("A passing verdict requires the oracle feed UTxO as a reference input");
+    }
+
+    const reading = readFeed(params.oracleUtxo);
+    const priced = usdToLovelace(datum.rewardUsdMicro, datum.priceScale, reading.price);
+    const available = datum.rewardAmount - feeLovelace;
+
+    // The stake is a ceiling: if ADA fell since posting the worker takes
+    // everything available rather than a promise the escrow cannot honour, and
+    // if it rose the surplus returns to the poster rather than becoming a
+    // windfall for whoever submits the transaction.
+    const payout = priced > available ? available : priced;
+    const refund = available - payout;
+
+    let complete = builder
+      .readFrom([params.oracleUtxo])
+      .pay.ToAddress(params.workerAddress, { lovelace: payout });
+
+    if (feeLovelace > 0n) {
+      complete = complete.pay.ToAddress(params.treasuryAddress, { lovelace: feeLovelace });
+    }
+    if (refund > 0n) {
+      complete = complete.pay.ToAddress(params.posterAddress, { lovelace: refund });
+    }
 
     const tx = await complete.complete();
     const signed = await tx.sign.withWallet().complete();
