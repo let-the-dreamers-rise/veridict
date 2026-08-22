@@ -28,6 +28,17 @@ Bounties that pay themselves. Post a dollar amount, agree the criteria up front,
 50000
 ```
 
+## Supporting links
+
+```
+https://veridict-five.vercel.app
+https://github.com/let-the-dreamers-rise/veridict
+https://preprod.cardanoscan.io/transaction/f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1
+https://preprod.cardanoscan.io/transaction/c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee
+```
+
+Add your Kaggle profile as the fifth link once the GitHub Name field is set.
+
 ---
 
 ## What solution are you building, and what problem does it solve, for whom? [~1470]
@@ -84,6 +95,8 @@ would double the adoption obligation and drag the average down.
 
 ```
 TRL 5, validated on a public testnet. Deployed and working on Cardano Preprod, including the oracle integration itself.
+
+Live at https://veridict-five.vercel.app — anyone with a preprod wallet can post a bounty, and anyone at all can verify a past verdict without connecting anything.
 
 Script hash 30da5ba8797fc4e34c53b4bb796ec26b2b2769662d06a353d531a1db.
 
