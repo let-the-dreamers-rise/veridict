@@ -35,3 +35,5 @@ deployments/local.json
 # Next.js
 apps/web/.next/
 apps/web/.env.local
+.vercel
+.env*.local
