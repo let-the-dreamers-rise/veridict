@@ -31,3 +31,7 @@ keys/
 # Local chain artifacts that are environment-specific
 deployments/local.json
 
+
+# Next.js
+apps/web/.next/
+apps/web/.env.local
