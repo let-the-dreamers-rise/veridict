@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   // The shared package is the single source of the signed preimage. Bundling it
   // rather than reimplementing the digest here is what stops the two drifting.
-  transpilePackages: ["@veridict/shared"],
+  transpilePackages: ["@veridict/shared", "@veridict/offchain"],
   // Lucid loads a WASM module that webpack does not carry into the server
   // bundle, so it is left external and resolved from node_modules at runtime.
   serverExternalPackages: ["@lucid-evolution/lucid"],

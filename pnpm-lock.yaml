@@ -57,6 +57,9 @@ importers:
       '@lucid-evolution/lucid':
         specifier: ^0.4.29
         version: 0.4.34(@harmoniclabs/bytestring@1.0.0)(@harmoniclabs/cbor@1.6.6)(@harmoniclabs/crypto@0.2.5)(@harmoniclabs/pair@1.0.0)(fast-check@3.23.2)
+      '@veridict/offchain':
+        specifier: workspace:*
+        version: link:../../packages/offchain
       '@veridict/shared':
         specifier: workspace:*
         version: link:../../packages/shared

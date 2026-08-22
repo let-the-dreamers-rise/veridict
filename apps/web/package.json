@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@lucid-evolution/lucid": "^0.4.29",
+    "@veridict/offchain": "workspace:*",
     "@veridict/shared": "workspace:*",
     "next": "^15.0.3",
     "react": "^18.3.1",

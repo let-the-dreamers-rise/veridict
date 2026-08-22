@@ -52,8 +52,22 @@ export interface EscrowContext {
   readonly scriptHash: string;
 }
 
-export function escrowContext(lucid: LucidEvolution, network: Network, blueprintPath?: string): EscrowContext {
-  const script = bountyEscrowScript(blueprintPath);
+/**
+ * Builds the escrow context.
+ *
+ * The script can be supplied directly for environments with no filesystem to
+ * read the blueprint from, such as a serverless function where the compiled
+ * validator is bundled at build time instead.
+ */
+export function escrowContext(
+  lucid: LucidEvolution,
+  network: Network,
+  blueprintPathOrScript?: string | Script,
+): EscrowContext {
+  const script =
+    typeof blueprintPathOrScript === "object"
+      ? blueprintPathOrScript
+      : bountyEscrowScript(blueprintPathOrScript);
   return {
     lucid,
     network,
@@ -176,6 +190,30 @@ export async function createBounty(
   const signed = await tx.sign.withWallet().complete();
   const txHash = await signed.submit();
   return { txHash, datum };
+}
+
+/**
+ * Builds the same transaction but returns it unsigned.
+ *
+ * Used where the signer is a browser wallet rather than this process: the
+ * caller signs something they can inspect, and no key is ever sent anywhere.
+ */
+export async function createBountyTx(
+  context: EscrowContext,
+  params: CreateBountyParams,
+): Promise<string> {
+  const datum = initialDatum(params);
+
+  const tx = await context.lucid
+    .newTx()
+    .pay.ToContract(
+      context.scriptAddress,
+      { kind: "inline", value: encodeDatum(datum) },
+      { lovelace: params.rewardLovelace },
+    )
+    .complete();
+
+  return tx.toCBOR();
 }
 
 export async function commitToBounty(
