@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/broadsheet-55eca9f0-06a4-4360-be9e-8043a1528aae/styles.css">
+<script src="_ds/broadsheet-55eca9f0-06a4-4360-be9e-8043a1528aae/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#e6e4e1;font-family:var(--font-body);text-wrap:pretty}
+a{color:var(--color-accent)}a:hover{color:var(--color-accent-700)}
+.dv-turn{padding:44px 48px 36px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}
+.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}
+.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+.dv-tname{font:600 14px/1.2 var(--font-heading);color:#1a1a1a}
+.dv-tsub{margin:0 0 26px;font:400 13px/1.5 var(--font-body);color:rgba(0,0,0,.55);max-width:82ch}
+.dv-opts{display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start}
+.dv-opt{flex:none;display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px}
+.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+.dv-olabel{display:flex;align-items:baseline;gap:9px;font:400 12px/1.4 var(--font-body);color:rgba(0,0,0,.6);max-width:880px}
+.dv-card{max-width:100%;background:var(--color-bg);border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 3px rgba(0,0,0,.07);overflow:hidden}
+.dv-opt:target .dv-oid{background:var(--color-accent);color:#fff}
+.dv-next{margin:26px 0 0;font:400 12.5px/1.6 var(--font-body);color:rgba(0,0,0,.55)}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Alternate directions — the landing hero and the board</span></div>
+  <p class="dv-tsub">The clickable prototype uses <a class="dv-oid" href="#1a">1a</a> and <a class="dv-oid" href="#1d">1d</a>. The four others are real alternatives, not decoration: each moves one decision — what the page leads with, and whether the board is a ledger or a set of listings. Say an id in chat and I will move the prototype onto it.</p>
+
+  <div class="dv-opts">
+
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Front page — the claim leads, the evidence is indexed underneath. Currently in the prototype.</div>
+      <div class="dv-card" style="width:880px">
+        <div style="padding:22px 44px 0">
+          <div style="display:flex;align-items:baseline;gap:26px;padding-bottom:11px">
+            <span style="font-family:var(--font-heading);font-weight:600;font-size:19px;letter-spacing:-0.02em;margin-right:auto">Veridict</span>
+            <span style="font-size:12.5px;white-space:nowrap">Front page</span><span style="font-size:12.5px;white-space:nowrap">Bounties</span><span style="font-size:12.5px;white-space:nowrap">Post</span><span style="font-size:12.5px;white-space:nowrap">Verify</span>
+            <span class="tag tag-outline" style="font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase">Preprod</span>
+          </div>
+          <div style="height:5px;border-top:2px solid var(--color-text);border-bottom:1px solid var(--color-text)"></div>
+          <div style="display:flex;justify-content:space-between;gap:20px;padding:7px 0;font-size:9.5px;line-height:15px;letter-spacing:0.09em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 70%,transparent)"><span style="white-space:nowrap">Cardano Preprod &middot; No. 0004</span><span style="white-space:nowrap">ADA/USD 0.4000</span><span style="white-space:nowrap">No human approves the payout</span></div>
+          <div style="height:0;border-top:1px solid var(--color-text)"></div>
+        </div>
+        <div style="padding:52px 44px 44px">
+          <h1 style="font-family:var(--font-heading);font-weight:600;font-size:66px;line-height:1.05;letter-spacing:-0.025em;margin:0 0 0 -0.035em">
+            <span style="display:block">Bounties that</span>
+            <span class="cmyk-head" style="display:block"><span class="paper">pay themselves.</span><span class="plate plate-c" aria-hidden="true">pay themselves.</span><span class="plate plate-m" aria-hidden="true">pay themselves.</span><span class="plate plate-y" aria-hidden="true">pay themselves.</span></span>
+          </h1>
+          <p style="font-size:16px;line-height:28px;max-width:52ch;margin:28px 0 0;color:color-mix(in srgb,var(--color-text) 82%,transparent)">Post a task with a dollar amount and the criteria the work must meet. The criteria are locked on chain before any money is.</p>
+          <div style="display:flex;gap:11px;margin-top:24px"><span class="btn btn-primary">Browse bounties</span><span class="btn btn-secondary">Post a bounty</span></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 56px;margin-top:44px">
+            <p style="display:flex;align-items:baseline;gap:8px;margin:0;font-size:14px;line-height:25px">A bounty that paid itself<span style="flex:1;border-bottom:1px dotted color-mix(in srgb,var(--color-text) 45%,transparent);margin-bottom:0.34em"></span><span style="font-family:var(--font-heading);font-weight:600;font-size:15px">A1</span></p>
+            <p style="display:flex;align-items:baseline;gap:8px;margin:0;font-size:14px;line-height:25px">A verdict that refused to pay<span style="flex:1;border-bottom:1px dotted color-mix(in srgb,var(--color-text) 45%,transparent);margin-bottom:0.34em"></span><span style="font-family:var(--font-heading);font-weight:600;font-size:15px;color:var(--color-accent-2-700)">A1</span></p>
+            <p style="display:flex;align-items:baseline;gap:8px;margin:0;font-size:14px;line-height:25px">How the escrow decides<span style="flex:1;border-bottom:1px dotted color-mix(in srgb,var(--color-text) 45%,transparent);margin-bottom:0.34em"></span><span style="font-family:var(--font-heading);font-weight:600;font-size:15px">A2</span></p>
+            <p style="display:flex;align-items:baseline;gap:8px;margin:0;font-size:14px;line-height:25px">What this is not, yet<span style="flex:1;border-bottom:1px dotted color-mix(in srgb,var(--color-text) 45%,transparent);margin-bottom:0.34em"></span><span style="font-family:var(--font-heading);font-weight:600;font-size:15px">A4</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>The refusal leads — the page opens on the money that did not move, and explains itself afterwards.</div>
+      <div class="dv-card" style="width:880px">
+        <div style="padding:22px 44px 0">
+          <div style="display:flex;align-items:baseline;gap:26px;padding-bottom:11px">
+            <span style="font-family:var(--font-heading);font-weight:600;font-size:19px;letter-spacing:-0.02em;margin-right:auto">Veridict</span>
+            <span style="font-size:12.5px;white-space:nowrap">Front page</span><span style="font-size:12.5px;white-space:nowrap">Bounties</span><span style="font-size:12.5px;white-space:nowrap">Post</span><span style="font-size:12.5px;white-space:nowrap">Verify</span>
+            <span class="tag tag-outline" style="font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase">Preprod</span>
+          </div>
+          <div style="height:5px;border-top:2px solid var(--color-text);border-bottom:1px solid var(--color-text)"></div>
+        </div>
+        <div style="padding:40px 44px 46px">
+          <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-2-700);margin-bottom:20px">Transaction c1bee46b &middot; Cardano Preprod &middot; 21 August</div>
+          <span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:118px;letter-spacing:-0.04em"><span class="paper">25.000000</span><span class="plate plate-c" aria-hidden="true">25.000000</span><span class="plate plate-m" aria-hidden="true">25.000000</span><span class="plate plate-y" aria-hidden="true">25.000000</span></span>
+          <div style="display:flex;align-items:baseline;gap:14px;margin-top:16px">
+            <span style="font-size:13px;letter-spacing:0.09em;text-transform:uppercase;color:var(--color-accent-2-700)">tADA, which the contract declined to release</span>
+          </div>
+          <h1 style="font-family:var(--font-heading);font-weight:600;font-size:40px;line-height:1.1;letter-spacing:-0.022em;margin:36px 0 0;max-width:24ch">The work missed two criteria out of five. Nobody could pay it anyway — including us.</h1>
+          <p style="font-size:16px;line-height:28px;max-width:56ch;margin:22px 0 0;color:color-mix(in srgb,var(--color-text) 82%,transparent)">Veridict is an escrow on Cardano where the criteria are agreed and hashed before the money is locked. Every escrow can pay. This one can also decline, in public, against a standard nobody can edit afterwards.</p>
+          <div style="display:flex;gap:11px;margin-top:26px"><span class="btn btn-primary">Read the verdict</span><span class="btn btn-secondary">Check the signature</span><span class="btn btn-ghost">How it works</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Two outcomes, side by side — the hero is the comparison; paid on the left, withheld on the right.</div>
+      <div class="dv-card" style="width:880px">
+        <div style="padding:22px 44px 0">
+          <div style="display:flex;align-items:baseline;gap:26px;padding-bottom:11px">
+            <span style="font-family:var(--font-heading);font-weight:600;font-size:19px;letter-spacing:-0.02em;margin-right:auto">Veridict</span>
+            <span style="font-size:12.5px;white-space:nowrap">Front page</span><span style="font-size:12.5px;white-space:nowrap">Bounties</span><span style="font-size:12.5px;white-space:nowrap">Post</span><span style="font-size:12.5px;white-space:nowrap">Verify</span>
+            <span class="tag tag-outline" style="font-size:9.5px;letter-spacing:0.08em;text-transform:uppercase">Preprod</span>
+          </div>
+          <div style="height:5px;border-top:2px solid var(--color-text);border-bottom:1px solid var(--color-text)"></div>
+        </div>
+        <div style="padding:44px 44px 46px">
+          <h1 style="font-family:var(--font-heading);font-weight:600;font-size:52px;line-height:1.06;letter-spacing:-0.025em;margin:0 0 12px -0.035em;max-width:20ch">Two bounties. One standard. Two answers.</h1>
+          <p style="font-size:15.5px;line-height:27px;max-width:60ch;margin:0 0 34px;color:color-mix(in srgb,var(--color-text) 80%,transparent)">Both were posted in dollars, both had their criteria hashed before any money was locked, and both were settled by the same signed verdict format. The chain treated them differently because the work was different.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:36px">
+            <div style="padding-right:36px;border-right:1px solid var(--color-divider)">
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-700);margin-bottom:14px">Released</div>
+              <span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:52px;letter-spacing:-0.03em"><span class="paper">30.000000</span><span class="plate plate-c" aria-hidden="true">30.000000</span><span class="plate plate-m" aria-hidden="true">30.000000</span><span class="plate plate-y" aria-hidden="true">30.000000</span></span>
+              <p style="font-size:14.5px;line-height:25px;margin:16px 0 0;color:color-mix(in srgb,var(--color-text) 80%,transparent)">A $12.00 bounty, priced at $0.40 per ADA by a feed read as a reference input. Five criteria of five. The surplus went back to the poster.</p>
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;margin-top:14px;color:var(--color-accent)">f76999d78f611e51…b1d3b0b1</div>
+            </div>
+            <div>
+              <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--color-accent-2-700);margin-bottom:14px">Withheld</div>
+              <span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:52px;letter-spacing:-0.03em"><span class="paper">25.000000</span><span class="plate plate-c" aria-hidden="true">25.000000</span><span class="plate plate-m" aria-hidden="true">25.000000</span><span class="plate plate-y" aria-hidden="true">25.000000</span></span>
+              <p style="font-size:14.5px;line-height:25px;margin:16px 0 0;color:color-mix(in srgb,var(--color-text) 80%,transparent)">A $25.00 bounty that scored 42 of 100. The reward stayed in the contract — not refunded either, so the worker has something to appeal.</p>
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;margin-top:14px;color:var(--color-accent)">c1bee46bd021ffbc…f8185a4ee</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1d">
+      <div class="dv-olabel"><a class="dv-oid" href="#1d">1d</a>Board as ledger — scannable rows, status as a tag, one line of chain detail. Currently in the prototype.</div>
+      <div class="dv-card" style="width:880px">
+        <div style="padding:36px 44px 40px">
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:34px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 22px">Live bounties</h2>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+            <span style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 60%,transparent)">Filter</span>
+            <div class="seg"><span class="seg-opt" style="background:var(--color-accent);color:var(--color-bg)">All</span><span class="seg-opt">Open</span><span class="seg-opt">Submitted</span><span class="seg-opt">Resolved</span><span class="seg-opt">Withheld</span></div>
+          </div>
+          <table class="table">
+            <thead><tr><th style="width:82px">Reward</th><th>Task</th><th style="width:170px">Status</th><th style="width:120px">Staked</th></tr></thead>
+            <tbody>
+              <tr><td style="padding:13px 10px;vertical-align:top"><span style="font-family:var(--font-heading);font-weight:600;font-size:18px">$5.00</span></td><td style="padding:13px 10px;vertical-align:top"><div style="font-family:var(--font-heading);font-weight:600;font-size:15.5px">Add a --json flag to the verifier CLI</div><div style="font-size:11px;color:color-mix(in srgb,var(--color-text) 55%,transparent);margin-top:4px">3 criteria, 3 machine-checkable</div></td><td style="padding:13px 10px;vertical-align:top"><span class="tag tag-outline" style="white-space:nowrap">Open</span></td><td style="padding:13px 10px;vertical-align:top;font-size:13.5px">15.000000 tADA</td></tr>
+              <tr><td style="padding:13px 10px;vertical-align:top"><span style="font-family:var(--font-heading);font-weight:600;font-size:18px">$40.00</span></td><td style="padding:13px 10px;vertical-align:top"><div style="font-family:var(--font-heading);font-weight:600;font-size:15.5px">Write the Blockfrost rate-limit backoff</div><div style="font-size:11px;color:color-mix(in srgb,var(--color-text) 55%,transparent);margin-top:4px">4 criteria, 3 machine-checkable</div></td><td style="padding:13px 10px;vertical-align:top"><span class="tag tag-neutral" style="white-space:nowrap">Submitted</span></td><td style="padding:13px 10px;vertical-align:top;font-size:13.5px">120.000000 tADA</td></tr>
+              <tr><td style="padding:13px 10px;vertical-align:top"><span style="font-family:var(--font-heading);font-weight:600;font-size:18px">$12.00</span></td><td style="padding:13px 10px;vertical-align:top"><div style="font-family:var(--font-heading);font-weight:600;font-size:15.5px">Fix the flaky parser test</div><div style="font-size:11px;color:color-mix(in srgb,var(--color-text) 55%,transparent);margin-top:4px">5 criteria, 4 machine-checkable</div></td><td style="padding:13px 10px;vertical-align:top"><span class="tag tag-accent" style="white-space:nowrap">Resolved &middot; paid</span></td><td style="padding:13px 10px;vertical-align:top;font-size:13.5px">60.000000 tADA</td></tr>
+              <tr><td style="padding:13px 10px;vertical-align:top"><span style="font-family:var(--font-heading);font-weight:600;font-size:18px">$25.00</span></td><td style="padding:13px 10px;vertical-align:top"><div style="font-family:var(--font-heading);font-weight:600;font-size:15.5px">Port the CBOR encoder to a streaming writer</div><div style="font-size:11px;color:color-mix(in srgb,var(--color-text) 55%,transparent);margin-top:4px">5 criteria, 4 machine-checkable</div></td><td style="padding:13px 10px;vertical-align:top"><span class="tag tag-accent-2" style="white-space:nowrap">Payout withheld</span></td><td style="padding:13px 10px;vertical-align:top;font-size:13.5px">25.000000 tADA</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1e">
+      <div class="dv-olabel"><a class="dv-oid" href="#1e">1e</a>Board as classifieds — no table, no rules between rows. The reward is the figure you scan; the criteria are visible before you click.</div>
+      <div class="dv-card" style="width:880px">
+        <div style="padding:36px 44px 44px">
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:34px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 8px">Live bounties</h2>
+          <p style="font-size:13.5px;line-height:23px;margin:0 0 34px;color:color-mix(in srgb,var(--color-text) 65%,transparent);max-width:56ch">Four listed &middot; two open to submissions &middot; read from the escrow contract</p>
+          <div style="display:grid;gap:34px">
+            <div style="display:grid;grid-template-columns:132px minmax(0,1fr) 128px;gap:26px;align-items:start">
+              <div><span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:38px;letter-spacing:-0.03em"><span class="paper">$5.00</span><span class="plate plate-c" aria-hidden="true">$5.00</span><span class="plate plate-m" aria-hidden="true">$5.00</span><span class="plate plate-y" aria-hidden="true">$5.00</span></span><div style="font-size:11px;margin-top:8px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">15.000000 tADA staked</div></div>
+              <div><h3 style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.24;margin:0 0 8px">Add a --json flag to the verifier CLI</h3><div style="font-size:13.5px;line-height:23px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">Machine-readable output for the three fields a CI job actually reads: verdict, score, funds. <span style="color:color-mix(in srgb,var(--color-text) 55%,transparent)">3 criteria, all checkable.</span></div></div>
+              <div style="text-align:right"><div style="font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--color-accent-700)">Open</div><div style="font-size:11.5px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">No submissions</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:132px minmax(0,1fr) 128px;gap:26px;align-items:start">
+              <div><span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:38px;letter-spacing:-0.03em"><span class="paper">$40.00</span><span class="plate plate-c" aria-hidden="true">$40.00</span><span class="plate plate-m" aria-hidden="true">$40.00</span><span class="plate plate-y" aria-hidden="true">$40.00</span></span><div style="font-size:11px;margin-top:8px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">120.000000 tADA staked</div></div>
+              <div><h3 style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.24;margin:0 0 8px">Write the Blockfrost rate-limit backoff</h3><div style="font-size:13.5px;line-height:23px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">Exponential, jittered, and provably bounded under a burst of 400 requests. <span style="color:color-mix(in srgb,var(--color-text) 55%,transparent)">4 criteria, 3 checkable.</span></div></div>
+              <div style="text-align:right"><div style="font-size:11px;letter-spacing:0.09em;text-transform:uppercase">Submitted</div><div style="font-size:11.5px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">Awaiting verdict</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:132px minmax(0,1fr) 128px;gap:26px;align-items:start">
+              <div><span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:38px;letter-spacing:-0.03em"><span class="paper">$12.00</span><span class="plate plate-c" aria-hidden="true">$12.00</span><span class="plate plate-m" aria-hidden="true">$12.00</span><span class="plate plate-y" aria-hidden="true">$12.00</span></span><div style="font-size:11px;margin-top:8px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">60.000000 tADA staked</div></div>
+              <div><h3 style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.24;margin:0 0 8px">Fix the flaky parser test</h3><div style="font-size:13.5px;line-height:23px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">Failed one run in nine on CI, never locally. <span style="color:color-mix(in srgb,var(--color-text) 55%,transparent)">5 criteria, 4 checkable.</span></div></div>
+              <div style="text-align:right"><div style="font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--color-accent-700)">Paid</div><div style="font-size:11.5px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">30.000000 tADA released</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:132px minmax(0,1fr) 128px;gap:26px;align-items:start">
+              <div><span class="cmyk-num" style="display:block;font-family:var(--font-heading);font-weight:600;font-size:38px;letter-spacing:-0.03em"><span class="paper">$25.00</span><span class="plate plate-c" aria-hidden="true">$25.00</span><span class="plate plate-m" aria-hidden="true">$25.00</span><span class="plate plate-y" aria-hidden="true">$25.00</span></span><div style="font-size:11px;margin-top:8px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">25.000000 tADA staked</div></div>
+              <div><h3 style="font-family:var(--font-heading);font-weight:600;font-size:20px;line-height:1.24;margin:0 0 8px">Port the CBOR encoder to a streaming writer</h3><div style="font-size:13.5px;line-height:23px;color:color-mix(in srgb,var(--color-text) 78%,transparent)">Held every value in memory before writing a byte. <span style="color:color-mix(in srgb,var(--color-text) 55%,transparent)">5 criteria, 4 checkable.</span></div></div>
+              <div style="text-align:right"><div style="font-size:11px;letter-spacing:0.09em;text-transform:uppercase;color:var(--color-accent-2-700)">Withheld</div><div style="font-size:11.5px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 55%,transparent)">25.000000 tADA held</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dv-opt" id="1f">
+      <div class="dv-olabel"><a class="dv-oid" href="#1f">1f</a>Board as press sheet — each row carries a step wedge showing how much of its reward a machine can decide. Answers the question a worker actually has.</div>
+      <div class="dv-card" style="width:880px">
+        <div style="padding:36px 44px 44px">
+          <h2 style="font-family:var(--font-heading);font-weight:600;font-size:34px;line-height:1.1;letter-spacing:-0.02em;margin:0 0 8px">Live bounties</h2>
+          <p style="font-size:13.5px;line-height:23px;margin:0 0 30px;color:color-mix(in srgb,var(--color-text) 70%,transparent);max-width:64ch">The wedge is the share of each bounty's weight that a deterministic check decides. Ten steps filled means no one's judgment enters into it at all.</p>
+          <div style="display:grid;gap:0">
+            <div style="display:grid;grid-template-columns:104px minmax(0,1fr) 200px;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)">
+              <span style="font-family:var(--font-heading);font-weight:600;font-size:26px">$5.00</span>
+              <div><div style="font-family:var(--font-heading);font-weight:600;font-size:16px;line-height:1.25">Add a --json flag to the verifier CLI</div><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:5px">Open &middot; 15.000000 tADA</div></div>
+              <div><div style="display:flex;gap:2px"><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span></div><div style="font-size:11px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">100% decided by machine</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:104px minmax(0,1fr) 200px;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)">
+              <span style="font-family:var(--font-heading);font-weight:600;font-size:26px">$40.00</span>
+              <div><div style="font-family:var(--font-heading);font-weight:600;font-size:16px;line-height:1.25">Write the Blockfrost rate-limit backoff</div><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:color-mix(in srgb,var(--color-text) 65%,transparent);margin-top:5px">Submitted &middot; 120.000000 tADA</div></div>
+              <div><div style="display:flex;gap:2px"><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span></div><div style="font-size:11px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">70% &middot; one judgment criterion</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:104px minmax(0,1fr) 200px;gap:24px;align-items:center;padding:20px 0;border-bottom:1px solid color-mix(in srgb,var(--color-text) 10%,transparent)">
+              <span style="font-family:var(--font-heading);font-weight:600;font-size:26px">$12.00</span>
+              <div><div style="font-family:var(--font-heading);font-weight:600;font-size:16px;line-height:1.25">Fix the flaky parser test</div><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-700);margin-top:5px">Paid &middot; 30.000000 tADA released</div></div>
+              <div><div style="display:flex;gap:2px"><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span></div><div style="font-size:11px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">80% &middot; one judgment criterion</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:104px minmax(0,1fr) 200px;gap:24px;align-items:center;padding:20px 0">
+              <span style="font-family:var(--font-heading);font-weight:600;font-size:26px">$25.00</span>
+              <div><div style="font-family:var(--font-heading);font-weight:600;font-size:16px;line-height:1.25">Port the CBOR encoder to a streaming writer</div><div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-accent-2-700);margin-top:5px">Withheld &middot; 25.000000 tADA held</div></div>
+              <div><div style="display:flex;gap:2px"><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-text)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span><span style="width:17px;height:26px;background:var(--color-neutral-200)"></span></div><div style="font-size:11px;margin-top:6px;color:color-mix(in srgb,var(--color-text) 60%,transparent)">67% &middot; the judgment criterion failed</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="dv-next">Try next: &ldquo;move the prototype onto <a class="dv-oid" href="#1b">1b</a>&rdquo; &middot; &ldquo;keep <a class="dv-oid" href="#1a">1a</a> but put <a class="dv-oid" href="#1c">1c</a>'s comparison directly under the hero&rdquo; &middot; &ldquo;board as <a class="dv-oid" href="#1e">1e</a>, with <a class="dv-oid" href="#1f">1f</a>'s wedge in the right column&rdquo;</p>
+</section>
+</x-dc>
+</body>
+</html>

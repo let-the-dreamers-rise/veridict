@@ -1,44 +1,52 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Archivo } from "next/font/google";
+
+import { Backdrop } from "@/components/Backdrop";
+import { Nav } from "@/components/Nav";
+import { Ticker } from "@/components/Ticker";
+import { SCRIPT_ADDRESS } from "@/lib/config";
 
 import "./globals.css";
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "600", "800"],
+  variable: "--font-archivo",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Veridict — bounties that pay themselves",
   description:
-    "Post a dollar amount, agree the criteria up front, and the escrow settles in ADA at the oracle price when a signed, replayable verdict says the work passed.",
+    "Post a task with a dollar amount and the criteria the work must meet. The criteria are locked on chain before any money is. A signed verdict then releases the payment, or withholds it.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={archivo.variable}>
       <body>
-        <header className="border-b border-edge">
-          <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-            <Link href="/" className="font-semibold tracking-tight">
-              Veridict
-            </Link>
-            <div className="flex items-center gap-5 text-sm text-muted">
-              <Link href="/board" className="hover:text-slate-100">
-                Bounties
-              </Link>
-              <Link href="/verify" className="hover:text-slate-100">
-                Verify
-              </Link>
-              <a
-                href="https://github.com/let-the-dreamers-rise/veridict"
-                className="hover:text-slate-100"
-              >
-                Source
-              </a>
-              <span className="rounded-full border border-edge px-2.5 py-1 text-xs">Preprod</span>
+        <Backdrop />
+        <div className="relative z-[2] min-h-screen">
+          <Nav />
+          <Ticker />
+          <main>{children}</main>
+          <footer
+            className="vd-shell py-14"
+            style={{ borderTop: "1px solid var(--vd-line)", marginTop: "64px" }}
+          >
+            <div className="grid gap-5 md:grid-cols-[180px_minmax(0,1fr)]">
+              <span className="vd-eyebrow">Escrow contract</span>
+              <span className="vd-mono break-all text-[12px]" style={{ color: "var(--vd-soft)" }}>
+                {SCRIPT_ADDRESS}
+              </span>
             </div>
-          </nav>
-        </header>
-        <main className="mx-auto max-w-5xl px-6 py-10">{children}</main>
-        <footer className="mx-auto max-w-5xl px-6 py-10 text-xs text-muted">
-          Cardano preprod testnet. Nothing here uses real money. Apache-2.0.
-        </footer>
+            <p className="mt-8 max-w-[62ch] text-[13px] leading-[22px]" style={{ color: "var(--vd-dim)" }}>
+              Cardano preprod testnet. Nothing here uses real money, and there are no outside users
+              yet — this site will say so until there are. Source is Apache-2.0 at{" "}
+              <a href="https://github.com/let-the-dreamers-rise/veridict">github.com/let-the-dreamers-rise/veridict</a>.
+            </p>
+          </footer>
+        </div>
       </body>
     </html>
   );

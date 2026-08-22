@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/organic-03b47d0d-f6b6-48da-bc5f-afd207134bf6/styles.css">
+<script src="_ds/organic-03b47d0d-f6b6-48da-bc5f-afd207134bf6/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
+<style>
+:root{--font-heading:"Archivo",system-ui,sans-serif;--font-body:"Archivo",system-ui,sans-serif;--font-heading-weight:800}
+body{margin:0;background:#08080b;color:#e9e7e4;font-family:"Archivo",system-ui,sans-serif;text-wrap:pretty}
+a{color:#ec3013;text-underline-offset:3px}
+a:hover{color:#ff9783}
+::selection{background:rgba(236,48,19,.35)}
+@keyframes vd-rise{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+@keyframes vd-fade{from{opacity:0}to{opacity:1}}
+@keyframes vd-tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes vd-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes vd-scan{from{transform:translateY(-100%)}to{transform:translateY(1400%)}}
+@keyframes vd-breathe{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.85;transform:scale(1.06)}}
+@keyframes vd-dash{to{stroke-dashoffset:0}}
+@keyframes vd-flow{to{stroke-dashoffset:-160}}
+</style>
+</helmet>
+<div style="position:relative;min-height:100vh;background:#08080b;color:#e9e7e4;font-family:var(--font-body);overflow-x:hidden">
+
+<div style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(900px 620px at 78% -6%,rgba(236,48,19,.20),transparent 62%),radial-gradient(760px 520px at 6% 22%,rgba(236,48,19,.09),transparent 60%),radial-gradient(1200px 800px at 50% 118%,rgba(255,151,131,.07),transparent 60%)"></div>
+<sc-if value="{{ gridBackdrop }}" hint-placeholder-val="{{ true }}">
+  <div style="position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:76px 76px;mask-image:radial-gradient(1100px 800px at 50% 12%,#000 30%,transparent 78%)"></div>
+</sc-if>
+
+<div style="position:relative;z-index:2">
+
+<div style="position:sticky;top:0;z-index:40;background:rgba(8,8,11,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.09)">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+    <div style="display:flex;align-items:center;gap:32px;padding:15px 0">
+      <button type="button" onClick="{{ goLanding }}" style="display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;cursor:pointer;color:#fff;margin-right:auto">
+        <span style="width:22px;height:22px;background:#ec3013;box-shadow:0 0 22px rgba(236,48,19,.85);display:block"></span>
+        <span style="font-family:var(--font-heading);font-weight:800;font-size:19px;letter-spacing:-0.03em;text-transform:uppercase">Veridict</span>
+      </button>
+      <div style="display:flex;align-items:center;gap:26px">
+        <span style="display:flex;flex-direction:column;gap:6px">
+          <button type="button" onClick="{{ goLanding }}" style="font:600 11.5px/1.2 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer;color:#e9e7e4;white-space:nowrap">Protocol</button>
+          <sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}"><span style="display:block;height:2px;background:#ec3013;box-shadow:0 0 12px rgba(236,48,19,.9)"></span></sc-if>
+        </span>
+        <span style="display:flex;flex-direction:column;gap:6px">
+          <button type="button" onClick="{{ goBoard }}" style="font:600 11.5px/1.2 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer;color:#e9e7e4;white-space:nowrap">Bounties</button>
+          <sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}"><span style="display:block;height:2px;background:#ec3013;box-shadow:0 0 12px rgba(236,48,19,.9)"></span></sc-if>
+        </span>
+        <span style="display:flex;flex-direction:column;gap:6px">
+          <button type="button" onClick="{{ goPost }}" style="font:600 11.5px/1.2 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer;color:#e9e7e4;white-space:nowrap">Post</button>
+          <sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}"><span style="display:block;height:2px;background:#ec3013;box-shadow:0 0 12px rgba(236,48,19,.9)"></span></sc-if>
+        </span>
+        <span style="display:flex;flex-direction:column;gap:6px">
+          <button type="button" onClick="{{ goVerify }}" style="font:600 11.5px/1.2 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer;color:#e9e7e4;white-space:nowrap">Verify</button>
+          <sc-if value="{{ isVerify }}" hint-placeholder-val="{{ false }}"><span style="display:block;height:2px;background:#ec3013;box-shadow:0 0 12px rgba(236,48,19,.9)"></span></sc-if>
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(236,48,19,.5);padding:5px 11px;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#ff9783;white-space:nowrap">
+          <span style="width:6px;height:6px;background:#ec3013;border-radius:50%;box-shadow:0 0 10px #ec3013;animation:vd-pulse 1.9s ease-in-out infinite"></span>Preprod live
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="border-bottom:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.02);overflow:hidden">
+  <div style="display:flex;width:200%;animation:vd-tick 42s linear infinite">
+    <div style="display:flex;gap:34px;width:50%;flex:none;padding:9px 0;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.02em;color:#8d8a86;white-space:nowrap">
+      <span>ADA/USD <span style="color:#fff">0.40000000</span></span><span>RESOLVE <span style="color:#ff9783">f76999d7…b1d3b0b1</span> PASS</span><span>PAID <span style="color:#fff">30.000000 tADA</span></span><span>RESOLVE <span style="color:#ec3013">c1bee46b…f8185a4ee</span> FAIL</span><span>WITHHELD <span style="color:#ec3013">25.000000 tADA</span></span><span>ORACLE <span style="color:#fff">9eac2a95…45fadc3a</span></span><span>SCRIPT <span style="color:#fff">addr_test1wqcd5ka…hxur3n</span></span><span>NO HUMAN APPROVES THE PAYOUT</span>
+    </div>
+    <div style="display:flex;gap:34px;width:50%;flex:none;padding:9px 0;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;letter-spacing:0.02em;color:#8d8a86;white-space:nowrap" aria-hidden="true">
+      <span>ADA/USD <span style="color:#fff">0.40000000</span></span><span>RESOLVE <span style="color:#ff9783">f76999d7…b1d3b0b1</span> PASS</span><span>PAID <span style="color:#fff">30.000000 tADA</span></span><span>RESOLVE <span style="color:#ec3013">c1bee46b…f8185a4ee</span> FAIL</span><span>WITHHELD <span style="color:#ec3013">25.000000 tADA</span></span><span>ORACLE <span style="color:#fff">9eac2a95…45fadc3a</span></span><span>SCRIPT <span style="color:#fff">addr_test1wqcd5ka…hxur3n</span></span><span>NO HUMAN APPROVES THE PAYOUT</span>
+    </div>
+  </div>
+</div>
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Landing">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+
+    <section style="padding:74px 0 64px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:48px clamp(28px,4vw,72px);align-items:center">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.14);padding:6px 12px;font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#a5a29e;margin-bottom:28px">Escrow on Cardano &middot; criteria-settled</div>
+        <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(44px,6.4vw,84px);line-height:0.94;letter-spacing:-0.04em;margin:0;text-transform:uppercase;color:#fff">Bounties that<br>pay <span style="color:#ec3013;text-shadow:0 0 44px rgba(236,48,19,.75)">themselves</span></h1>
+        <p style="font-size:17.5px;line-height:29px;max-width:52ch;margin:30px 0 0;color:#a5a29e">Post a task with a dollar amount and the criteria the work must meet. The criteria are locked on chain before any money is. A signed verdict then releases the payment — or withholds it. No invoice, no arbitration, no approval step.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px">
+          <button type="button" onClick="{{ goBoard }}" style="font:800 13px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 24px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 34px rgba(236,48,19,.5);white-space:nowrap">Browse bounties</button>
+          <button type="button" onClick="{{ goPost }}" style="font:800 13px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 24px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24);cursor:pointer;white-space:nowrap">Post a bounty</button>
+          <button type="button" onClick="{{ goVerify }}" style="font:800 13px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 8px;background:none;color:#ff9783;border:0;cursor:pointer;white-space:nowrap">Verify a verdict &rarr;</button>
+        </div>
+      </div>
+
+      <div style="position:relative">
+        <div style="position:absolute;inset:-14%;background:radial-gradient(closest-side,rgba(236,48,19,.32),transparent 72%);animation:vd-breathe 6s ease-in-out infinite;pointer-events:none"></div>
+        <div style="position:relative;border:1px solid rgba(255,255,255,.12);background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.015));padding:26px;overflow:hidden">
+          <div style="position:absolute;left:0;right:0;top:0;height:34px;background:linear-gradient(180deg,rgba(236,48,19,.28),transparent);animation:vd-scan 5.5s linear infinite;pointer-events:none"></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:14px;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:22px">
+            <span>Verdict &middot; bounty #0002</span><span style="color:#ec3013">Signed</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:24px">
+            <svg width="132" height="132" viewBox="0 0 132 132" style="flex:none;display:block">
+              <circle cx="66" cy="66" r="54" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="10"></circle>
+              <circle cx="66" cy="66" r="54" fill="none" stroke="#ec3013" stroke-width="10" stroke-linecap="butt" stroke-dasharray="339.3" stroke-dashoffset="{{ heroDialOffset }}" transform="rotate(-90 66 66)" style="filter:drop-shadow(0 0 10px rgba(236,48,19,.9))"></circle>
+              <text x="66" y="62" text-anchor="middle" fill="#fff" style="font:800 30px var(--font-heading);letter-spacing:-0.03em">42</text>
+              <text x="66" y="82" text-anchor="middle" fill="#8d8a86" style="font:600 9px var(--font-body);letter-spacing:0.16em">OF 100</text>
+            </svg>
+            <div>
+              <div style="font:800 26px/1 var(--font-heading);letter-spacing:-0.03em;text-transform:uppercase;color:#ec3013;text-shadow:0 0 30px rgba(236,48,19,.6)">Payout<br>withheld</div>
+              <div style="font-size:13.5px;line-height:21px;color:#a5a29e;margin-top:12px;max-width:24ch">Two criteria failed. The reward never left the contract.</div>
+            </div>
+          </div>
+          <div style="display:grid;gap:0;margin-top:22px;border-top:1px solid rgba(255,255,255,.1)">
+            <div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.06)"><span style="color:#8d8a86">Signature</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">valid</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.06)"><span style="color:#8d8a86">Criteria bound</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">yes</span></div>
+            <div style="display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:12.5px"><span style="color:#8d8a86">Funds</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#ec3013">still in contract</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="exhibits" style="scroll-margin-top:150px;padding:8px 0 68px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px">
+      <div style="position:relative;border:1px solid rgba(255,255,255,.11);background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.012));padding:30px 28px 26px;overflow:hidden">
+        <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#8d8a86;margin-bottom:22px">Exhibit A &middot; the reward moved</div>
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:clamp(34px,4.4vw,58px);line-height:1;letter-spacing:-0.04em;color:#fff;text-shadow:0 0 40px rgba(255,255,255,.28)">30.000000</div>
+        <div style="font:600 11px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#a5a29e;margin-top:14px">tADA released on a $12.00 bounty</div>
+        <p style="font-size:15px;line-height:26px;margin:22px 0 0;max-width:46ch;color:#a5a29e">The feed said $0.40 per ADA and the contract did the arithmetic itself. The poster staked 60 tADA; the surplus went back to them, not to whoever happened to submit the transaction.</p>
+        <button type="button" onClick="{{ verifySettle }}" style="margin-top:20px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;background:none;border:0;padding:0;cursor:pointer;color:#ff9783;text-decoration:underline;text-underline-offset:4px">f76999d78f611e51…b1d3b0b1</button>
+      </div>
+
+      <div style="position:relative;border:1px solid rgba(236,48,19,.45);background:linear-gradient(165deg,rgba(236,48,19,.16),rgba(236,48,19,.03));padding:30px 28px 26px;overflow:hidden;box-shadow:0 0 60px rgba(236,48,19,.14) inset">
+        <div style="position:absolute;top:-40%;right:-16%;width:70%;height:180%;background:radial-gradient(closest-side,rgba(236,48,19,.34),transparent 70%);pointer-events:none;animation:vd-breathe 7s ease-in-out infinite"></div>
+        <div style="position:relative">
+          <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#ff9783;margin-bottom:22px">Exhibit B &middot; the reward did not</div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:clamp(34px,4.4vw,58px);line-height:1;letter-spacing:-0.04em;color:#ec3013;text-shadow:0 0 50px rgba(236,48,19,.85)">25.000000</div>
+          <div style="font:600 11px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#ff9783;margin-top:14px">tADA still sitting in the contract</div>
+          <p style="font-size:15px;line-height:26px;margin:22px 0 0;max-width:46ch;color:#cfc9c4">The work missed two of five criteria and scored 42 out of 100 against a rubric fixed before it began. The escrow declined to release the reward — and did not refund the poster either, so the worker has something to appeal about.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:22px">
+            <button type="button" onClick="{{ openWithheld }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:13px 18px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 28px rgba(236,48,19,.55);white-space:nowrap">Read the verdict</button>
+            <button type="button" onClick="{{ verifyWithheld }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:13px 18px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);cursor:pointer;white-space:nowrap">Check the signature</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="howitworks" style="scroll-margin-top:150px;padding:0 0 72px">
+      <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;margin-bottom:34px">
+        <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(26px,3vw,36px);line-height:1;letter-spacing:-0.035em;margin:0;text-transform:uppercase;color:#fff">The lifecycle</h2>
+        <span style="font:600 11px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86">four moves &middot; the money is the last one</span>
+      </div>
+      <svg viewBox="0 0 1200 8" preserveAspectRatio="none" style="display:block;width:100%;height:8px;margin-bottom:-4px">
+        <line x1="0" y1="4" x2="1200" y2="4" stroke="rgba(255,255,255,.14)" stroke-width="1"></line>
+        <line x1="0" y1="4" x2="1200" y2="4" stroke="#ec3013" stroke-width="2" stroke-dasharray="14 26" style="animation:vd-flow 4s linear infinite"></line>
+      </svg>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,.12)">
+        <div style="padding:26px 26px 26px 0">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#ec3013;margin-bottom:14px">01 / POST</div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.14;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.02em;color:#fff">Priced in dollars</h3>
+          <p style="font-size:14px;line-height:24px;margin:0;color:#a5a29e">Stake a reward worth $25, not a number of ADA. What the worker receives is priced when the work is finished, so neither side carries the exchange rate.</p>
+        </div>
+        <div style="padding:26px;border-left:1px solid rgba(255,255,255,.12)">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#ec3013;margin-bottom:14px">02 / LOCK</div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.14;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.02em;color:#fff">Criteria hashed</h3>
+          <p style="font-size:14px;line-height:24px;margin:0;color:#a5a29e">Your spec becomes an explicit checklist. You approve it before anything is locked and its hash goes on chain, so the standard cannot move once submissions arrive.</p>
+        </div>
+        <div style="padding:26px;border-left:1px solid rgba(255,255,255,.12)">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#ec3013;margin-bottom:14px">03 / SUBMIT</div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.14;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.02em;color:#fff">Commit, then reveal</h3>
+          <p style="font-size:14px;line-height:24px;margin:0;color:#a5a29e">Human or agent. Submissions are committed before they are revealed, so nobody can lift your work out of the mempool and claim the bounty ahead of you.</p>
+        </div>
+        <div style="padding:26px 0 26px 26px;border-left:1px solid rgba(255,255,255,.12)">
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#ec3013;margin-bottom:14px">04 / SETTLE</div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.14;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.02em;color:#fff">The criteria decide</h3>
+          <p style="font-size:14px;line-height:24px;margin:0;color:#a5a29e">Checkable criteria run in a locked-down sandbox; only the subjective residual goes to bounded judgment. A signed verdict releases the escrow, or withholds it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:0 0 72px">
+      <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#8d8a86;margin-bottom:26px">Built for</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <div style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);padding:26px">
+          <div style="display:flex;gap:5px;margin-bottom:20px"><span style="width:9px;height:26px;background:#ec3013"></span><span style="width:9px;height:26px;background:rgba(255,255,255,.22)"></span><span style="width:9px;height:26px;background:rgba(255,255,255,.12)"></span></div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:19px;line-height:1.12;margin:0 0 12px;text-transform:uppercase;letter-spacing:-0.025em;color:#fff">Maintainers paying for issues</h3>
+          <p style="font-size:14.5px;line-height:25px;margin:0;color:#a5a29e">Attach $40 to the bug nobody wants. The test suite is the criterion; you never judge a stranger's pull request against your mood on a Thursday.</p>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);padding:26px">
+          <div style="display:flex;gap:5px;margin-bottom:20px"><span style="width:9px;height:26px;background:rgba(255,255,255,.22)"></span><span style="width:9px;height:26px;background:#ec3013"></span><span style="width:9px;height:26px;background:rgba(255,255,255,.12)"></span></div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:19px;line-height:1.12;margin:0 0 12px;text-transform:uppercase;letter-spacing:-0.025em;color:#fff">Paying across borders</h3>
+          <p style="font-size:14.5px;line-height:25px;margin:0;color:#a5a29e">No platform holding the money for fourteen days, no ten percent, no country list. Denominated in dollars, settled in ADA at the price when the work is done.</p>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.025);padding:26px">
+          <div style="display:flex;gap:5px;margin-bottom:20px"><span style="width:9px;height:26px;background:rgba(255,255,255,.12)"></span><span style="width:9px;height:26px;background:rgba(255,255,255,.22)"></span><span style="width:9px;height:26px;background:#ec3013"></span></div>
+          <h3 style="font-family:var(--font-heading);font-weight:800;font-size:19px;line-height:1.12;margin:0 0 12px;text-transform:uppercase;letter-spacing:-0.025em;color:#fff">Agents settling with agents</h3>
+          <p style="font-size:14.5px;line-height:25px;margin:0;color:#a5a29e">An agent cannot open a support ticket or receive a bank transfer. It can read criteria, submit against them, and be paid by a contract that answers in seconds.</p>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showHonesty }}" hint-placeholder-val="{{ true }}">
+    <section id="corrections" style="scroll-margin-top:150px;padding:0 0 84px">
+      <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);padding:32px clamp(22px,3vw,36px)">
+        <div style="display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:26px clamp(24px,4vw,56px);align-items:start">
+          <div>
+            <h2 style="font-family:var(--font-heading);font-weight:800;font-size:25px;line-height:1.04;margin:0 0 12px;text-transform:uppercase;letter-spacing:-0.03em;color:#fff">What this is<br>not, yet</h2>
+            <p style="font-size:13.5px;line-height:23px;margin:0;color:#8d8a86">Printed in full, because a product claiming a chain cannot lie should not start by shading the truth about itself.</p>
+          </div>
+          <div style="display:grid;gap:0">
+            <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:13px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font:800 11px/1.4 var(--font-heading);letter-spacing:0.09em;text-transform:uppercase;color:#ec3013">Testnet only</span><span style="font-size:14.5px;line-height:24px;color:#a5a29e">Everything above happened on Cardano Preprod. Nothing here has touched real money, and this is not deployed to mainnet.</span></div>
+            <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:13px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font:800 11px/1.4 var(--font-heading);letter-spacing:0.09em;text-transform:uppercase;color:#ec3013">No users</span><span style="font-size:14.5px;line-height:24px;color:#a5a29e">Every address in the demonstration is controlled by the author. No customers, no community, nothing that should be read as adoption.</span></div>
+            <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:13px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font:800 11px/1.4 var(--font-heading);letter-spacing:0.09em;text-transform:uppercase;color:#ec3013">One signing key</span><span style="font-size:14.5px;line-height:24px;color:#a5a29e">A signed verification service, not a decentralised oracle network. A multi-signer quorum is future work and is described as future work.</span></div>
+            <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:13px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font:800 11px/1.4 var(--font-heading);letter-spacing:0.09em;text-transform:uppercase;color:#ec3013">Judgment</span><span style="font-size:14.5px;line-height:24px;color:#a5a29e">Deterministic criteria re-run exactly. Judgment criteria are bounded by a rubric you approved and are appealable, because reproducible is not the same as correct.</span></div>
+            <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;padding:13px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="font:800 11px/1.4 var(--font-heading);letter-spacing:0.09em;text-transform:uppercase;color:#ec3013">The price feed</span><span style="font-size:14.5px;line-height:24px;color:#a5a29e">Ours, published in the standard format, because the public preprod ADA/USD feed stopped updating in March. A stale price misprices a payout; mainnet would use a live provider.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isBoard }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Bounty board">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+    <section style="padding:52px 0 26px;display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:24px clamp(28px,4vw,64px);align-items:end">
+      <div>
+        <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(32px,4.4vw,50px);line-height:1;letter-spacing:-0.04em;margin:0 0 14px;text-transform:uppercase;color:#fff">Live bounties</h1>
+        <p style="font-size:15px;line-height:26px;margin:0;max-width:58ch;color:#a5a29e">Read straight from the escrow contract, nothing cached beyond a few seconds. Every bounty listed was posted by the author — there are no outside posters yet, and this page will say so until there are.</p>
+      </div>
+      <div style="display:flex;justify-content:flex-end">
+        <button type="button" onClick="{{ goPost }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 30px rgba(236,48,19,.45);white-space:nowrap">Post a bounty</button>
+      </div>
+    </section>
+
+    <section style="padding:0 0 18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 20px">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px">
+        <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+          <span style="display:block">
+            <sc-if value="{{ f.on }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ f.pick }}" style="font:600 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;padding:10px 15px;background:#ec3013;color:#fff;border:1px solid #ec3013;cursor:pointer;white-space:nowrap;box-shadow:0 0 22px rgba(236,48,19,.4)">{{ f.label }}</button>
+            </sc-if>
+            <sc-if value="{{ f.off }}" hint-placeholder-val="{{ false }}">
+              <button type="button" onClick="{{ f.pick }}" style="font:600 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;padding:10px 15px;background:transparent;color:#a5a29e;border:1px solid rgba(255,255,255,.16);cursor:pointer;white-space:nowrap">{{ f.label }}</button>
+            </sc-if>
+          </span>
+        </sc-for>
+      </div>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;letter-spacing:0.06em;white-space:nowrap;color:#8d8a86">{{ rowCount }} listed</span>
+    </section>
+
+    <section style="padding:0 0 44px;border-top:1px solid rgba(255,255,255,.14)">
+      <div style="display:grid;grid-template-columns:110px minmax(0,1fr) 200px 150px 150px;gap:18px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86">
+        <span>Reward</span><span>Task</span><span>Status</span><span>Staked</span><span>Transaction</span>
+      </div>
+      <sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+        <div onClick="{{ r.open }}" style="display:grid;grid-template-columns:110px minmax(0,1fr) 200px 150px 150px;gap:18px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer" style-hover="background:rgba(255,255,255,.03)">
+          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:19px;letter-spacing:-0.03em;color:#fff">{{ r.usd }}</span>
+          <span style="display:block">
+            <span style="display:block;font-family:var(--font-heading);font-weight:800;font-size:16px;line-height:1.2;letter-spacing:-0.02em;color:#fff;margin-bottom:6px">{{ r.title }}</span>
+            <span style="display:block;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;line-height:17px;color:#7d7a76">{{ r.crit }} criteria &middot; {{ r.checkable }} machine-checkable &middot; {{ r.criteria }}</span>
+          </span>
+          <span style="display:block">
+            <span style="display:inline-flex;align-items:center;gap:7px;border:1px solid {{ r.dark.border }};background:{{ r.dark.fill }};padding:5px 10px;font:600 10px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;color:{{ r.dark.ink }};white-space:nowrap">{{ r.status }}</span>
+            <span style="display:block;font-size:12px;line-height:18px;margin-top:8px;color:#7d7a76">{{ r.note }}</span>
+          </span>
+          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;color:#cfc9c4">{{ r.staked }}</span>
+          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;color:#ff9783">{{ r.tx }}</span>
+        </div>
+      </sc-for>
+      <sc-if value="{{ noRows }}" hint-placeholder-val="{{ false }}">
+        <div style="padding:40px 0;font-size:15px;line-height:26px;color:#8d8a86;max-width:52ch">Nothing in that state right now. Every bounty posted so far is listed under one of the other filters.</div>
+      </sc-if>
+    </section>
+
+    <section style="padding:0 0 76px;display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;border-top:1px solid rgba(255,255,255,.1);padding-top:14px">
+      <span style="font:600 10px/1.6 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86">Escrow contract</span>
+      <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;word-break:break-all;color:#cfc9c4">addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n</span>
+    </section>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isPost }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Post a bounty">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+    <sc-if value="{{ postForm }}" hint-placeholder-val="{{ true }}">
+    <section style="padding:52px 0 30px;max-width:58ch">
+      <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(32px,4.4vw,50px);line-height:1;letter-spacing:-0.04em;margin:0 0 16px;text-transform:uppercase;color:#fff">Write the standard before you write the cheque</h1>
+      <p style="font-size:16px;line-height:27px;margin:0;color:#a5a29e">On Preprod, so none of this costs real money. You stake test ADA; the reward is denominated in dollars and priced at settlement.</p>
+    </section>
+
+    <section style="padding:0 0 84px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px clamp(28px,4vw,64px);align-items:start">
+      <div style="display:grid;gap:26px">
+        <div>
+          <label for="vd-spec" style="display:block;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:9px">What needs doing</label>
+          <textarea id="vd-spec" style="width:100%;min-height:104px;padding:13px 14px;font-family:var(--font-body);font-size:15px;line-height:25px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);border-radius:0;resize:vertical" value="{{ spec }}" onChange="{{ onSpec }}"></textarea>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <div>
+            <label for="vd-usd" style="display:block;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:9px">Reward, in dollars</label>
+            <input id="vd-usd" type="number" min="1" style="width:100%;padding:12px 14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:15px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);border-radius:0" value="{{ usd }}" onChange="{{ onUsd }}">
+            <p style="margin:8px 0 0;font-size:12px;line-height:19px;color:#7d7a76">Priced into ADA at the feed rate on the day it settles.</p>
+          </div>
+          <div>
+            <label for="vd-stake" style="display:block;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:9px">Test ADA to stake</label>
+            <input id="vd-stake" type="number" min="5" style="width:100%;padding:12px 14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:15px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);border-radius:0" value="{{ stake }}" onChange="{{ onStake }}">
+            <p style="margin:8px 0 0;font-size:12px;line-height:19px;color:#7d7a76">{{ stakeNote }}</p>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,.14);padding-top:24px">
+          <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:12px">
+            <h2 style="font-family:var(--font-heading);font-weight:800;font-size:22px;line-height:1;margin:0;text-transform:uppercase;letter-spacing:-0.03em;color:#fff">The criteria</h2>
+            <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;letter-spacing:0.06em;color:#ec3013">{{ checkableNote }}</span>
+          </div>
+          <p style="font-size:14.5px;line-height:24px;margin:0 0 22px;max-width:56ch;color:#a5a29e">Each line becomes a check the evaluator runs against a submission. Write them the way you would write a test, not the way you would write a wish. <strong style="color:#fff">Once you post, they cannot be changed</strong> — not by you, not by us, not after a submission arrives you dislike.</p>
+          <div style="display:grid;gap:14px">
+            <sc-for list="{{ criteria }}" as="c" hint-placeholder-count="3">
+              <div style="display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start">
+                <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;padding-top:13px;color:#ec3013">{{ c.n }}</span>
+                <div style="display:grid;gap:9px">
+                  <input style="width:100%;padding:12px 14px;font-family:var(--font-body);font-size:14.5px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);border-radius:0" value="{{ c.text }}" placeholder="The test passes twenty consecutive runs" onChange="{{ c.onText }}">
+                  <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px">
+                    <button type="button" onClick="{{ c.toggle }}" style="font:600 10px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;padding:8px 12px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24);cursor:pointer;white-space:nowrap">{{ c.kindLabel }}</button>
+                    <span style="font-size:12px;line-height:19px;color:#7d7a76;flex:1;min-width:220px">{{ c.kindNote }}</span>
+                    <button type="button" onClick="{{ c.remove }}" style="font:600 10px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;background:none;border:0;padding:8px 0;cursor:pointer;color:#ff9783;white-space:nowrap">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{ addCriterion }}" style="margin-top:16px;font:600 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;background:none;border:1px dashed rgba(255,255,255,.24);padding:11px 16px;cursor:pointer;color:#cfc9c4;white-space:nowrap">+ Add a criterion</button>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+          <button type="button" onClick="{{ review }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 22px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 30px rgba(236,48,19,.45);white-space:nowrap">Review and lock the criteria</button>
+          <span style="font-size:12.5px;color:#7d7a76">You will see exactly what gets hashed before anything is signed.</span>
+        </div>
+      </div>
+
+      <div style="position:sticky;top:150px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.025);padding:24px">
+        <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:12px">What goes on chain</div>
+        <p style="font-size:13.5px;line-height:23px;margin:0 0 22px;color:#a5a29e">Not your prose. A canonical encoding of the criteria list, hashed. The chain stores the hash; the text lives where anyone can re-hash it and check.</p>
+        <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:10px">Criteria hash, as you type</div>
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:21px;word-break:break-all;color:#ec3013;text-shadow:0 0 20px rgba(236,48,19,.5)">{{ liveHash }}</div>
+        <div style="font-size:12px;line-height:20px;margin-top:10px;color:#7d7a76">It moves with every keystroke. When you post, it stops moving for good.</div>
+        <div style="display:grid;gap:0;margin-top:22px">
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Reward</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">{{ usdLabel }}</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Staked</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">{{ stakeLabel }}</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">At $0.4000/ADA</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">{{ impliedAda }}</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Criteria</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">{{ criteriaCount }}</span></div>
+        </div>
+      </div>
+    </section>
+    </sc-if>
+
+    <sc-if value="{{ postDone }}" hint-placeholder-val="{{ false }}">
+    <section style="padding:64px 0 100px;max-width:64ch">
+      <div style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(236,48,19,.5);padding:6px 12px;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#ff9783;margin-bottom:20px"><span style="width:6px;height:6px;background:#ec3013;border-radius:50%;box-shadow:0 0 10px #ec3013"></span>Posted &middot; criteria immutable</div>
+      <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(32px,4.4vw,50px);line-height:1;letter-spacing:-0.04em;margin:0 0 18px;text-transform:uppercase;color:#fff">Your stake is in the escrow</h1>
+      <p style="font-size:16px;line-height:27px;margin:0 0 30px;color:#a5a29e">It can leave on one of two events: a signed verdict that passes the criteria you just fixed, or the deadline, which returns it to you. There is no third path, and no button on this site that creates one.</p>
+      <div style="display:grid;gap:0;margin-bottom:30px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.02);padding:0 20px">
+        <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span style="font:600 10px/1.6 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86">Criteria hash</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:20px;word-break:break-all;color:#fff">{{ liveHash }}</span></div>
+        <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span style="font:600 10px/1.6 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86">Transaction</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:20px;word-break:break-all;color:#ff9783">09617a216a430615799ba55601ba3a55e075eda39d4117052ed562506e343d31</span></div>
+        <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;padding:14px 0"><span style="font:600 10px/1.6 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86">State</span><span style="font-size:14px;color:#fff">Open &middot; accepting submissions</span></div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <button type="button" onClick="{{ goBoard }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;background:#ec3013;color:#fff;border:0;cursor:pointer;white-space:nowrap">See it on the board</button>
+        <button type="button" onClick="{{ resetPost }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24);cursor:pointer;white-space:nowrap">Post another</button>
+      </div>
+    </section>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Bounty detail">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+    <section style="padding:32px 0 0">
+      <button type="button" onClick="{{ goBoard }}" style="font:600 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer;color:#ff9783;white-space:nowrap">&larr; All bounties</button>
+    </section>
+
+    <section style="padding:20px 0 28px;display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:26px clamp(28px,4vw,64px);align-items:end;border-bottom:1px solid rgba(255,255,255,.14)">
+      <div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:16px">
+          <span style="display:inline-flex;align-items:center;gap:7px;border:1px solid {{ detail.dark.border }};background:{{ detail.dark.fill }};padding:6px 11px;font:600 10px/1 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:{{ detail.dark.ink }};white-space:nowrap">{{ detail.status }}</span>
+          <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11.5px;color:#7d7a76">criteria {{ detail.criteriaShort }}</span>
+        </div>
+        <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(28px,3.8vw,44px);line-height:1;letter-spacing:-0.04em;margin:0;text-transform:uppercase;max-width:20ch;color:#fff">{{ detail.title }}</h1>
+      </div>
+      <div style="display:grid;gap:0">
+        <div style="display:flex;justify-content:space-between;gap:14px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Reward</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:16px;color:#fff">{{ detail.usd }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:14px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Staked</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#cfc9c4">{{ detail.staked }}</span></div>
+        <div style="display:flex;justify-content:space-between;gap:14px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">{{ detail.outcomeLabel }}</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">{{ detail.outcomeValue }}</span></div>
+      </div>
+    </section>
+
+    <section style="padding:32px 0 48px;display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:40px clamp(28px,4vw,64px);align-items:start">
+      <div>
+        <p style="font-size:16.5px;line-height:29px;margin:0 0 34px;max-width:62ch;color:#cfc9c4">{{ detail.body }}</p>
+
+        <h2 style="font-family:var(--font-heading);font-weight:800;font-size:23px;line-height:1.04;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.03em;color:#fff">The criteria, as locked</h2>
+        <p style="font-size:14.5px;line-height:24px;margin:0 0 22px;max-width:60ch;color:#8d8a86">{{ detail.criteriaNote }}</p>
+
+        <div style="display:grid;gap:0">
+          <sc-for list="{{ detail.criteria }}" as="c" hint-placeholder-count="5">
+            <div style="display:grid;grid-template-columns:44px minmax(0,1fr) 96px;gap:16px;align-items:start;padding:18px 0;border-top:1px solid rgba(255,255,255,.1)">
+              <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;color:#7d7a76">{{ c.n }}</span>
+              <div>
+                <div style="font-size:15.5px;line-height:25px;margin-bottom:8px;color:#e9e7e4">{{ c.text }}</div>
+                <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10.5px;letter-spacing:0.1em;text-transform:uppercase;color:#7d7a76">{{ c.kind }} &middot; weight {{ c.weight }}</div>
+                <sc-if value="{{ c.showNote }}" hint-placeholder-val="{{ false }}">
+                  <div style="font-size:13.5px;line-height:23px;margin-top:11px;padding:11px 14px;border-left:2px solid #ec3013;background:rgba(236,48,19,.08);color:#cfc9c4;animation:vd-rise 0.3s ease both">{{ c.note }}</div>
+                </sc-if>
+              </div>
+              <div style="text-align:right">
+                <sc-if value="{{ c.showPass }}" hint-placeholder-val="{{ false }}">
+                  <span style="display:inline-block;font:800 11px/1 var(--font-heading);letter-spacing:0.14em;text-transform:uppercase;padding:7px 11px;border:1px solid rgba(255,255,255,.28);color:#fff;animation:vd-rise 0.3s ease both">Pass</span>
+                </sc-if>
+                <sc-if value="{{ c.showFail }}" hint-placeholder-val="{{ false }}">
+                  <span style="display:inline-block;font:800 11px/1 var(--font-heading);letter-spacing:0.14em;text-transform:uppercase;padding:7px 11px;border:1px solid #ec3013;background:rgba(236,48,19,.16);color:#ff9783;box-shadow:0 0 22px rgba(236,48,19,.35);animation:vd-rise 0.3s ease both">Fail</span>
+                </sc-if>
+                <sc-if value="{{ c.hidden }}" hint-placeholder-val="{{ true }}">
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:#4d4a47">&mdash;&mdash;</span>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ canReveal }}" hint-placeholder-val="{{ true }}">
+          <button type="button" onClick="{{ reveal }}" style="margin-top:26px;font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 22px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 34px rgba(236,48,19,.5);white-space:nowrap">Reveal the verdict, criterion by criterion</button>
+        </sc-if>
+
+        <sc-if value="{{ noVerdictYet }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:30px;max-width:58ch;border-top:1px solid rgba(255,255,255,.14);padding-top:20px">
+            <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#8d8a86;margin-bottom:12px">No verdict yet</div>
+            <p style="font-size:15px;line-height:26px;margin:0;color:#a5a29e">Nothing has been decided about this bounty, and nothing can be until a submission is revealed. When one is, these rows are evaluated in order and the result is signed and published here — whether or not it pays.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ revealedAll }}" hint-placeholder-val="{{ false }}">
+          <div style="margin-top:36px;border:1px solid rgba(236,48,19,.4);background:linear-gradient(160deg,rgba(236,48,19,.12),rgba(236,48,19,.02));padding:28px;animation:vd-fade 0.5s ease both">
+            <div style="display:grid;grid-template-columns:minmax(0,1fr) auto;gap:28px;align-items:center">
+              <div>
+                <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#ff9783;margin-bottom:14px">The verdict</div>
+                <h3 style="font-family:var(--font-heading);font-weight:800;font-size:28px;line-height:1.04;letter-spacing:-0.03em;margin:0 0 16px;text-transform:uppercase;color:#fff">{{ detail.verdictHead }}</h3>
+                <p style="font-size:15.5px;line-height:26px;margin:0 0 14px;max-width:56ch;color:#cfc9c4">{{ detail.verdictBody }}</p>
+                <p style="font-size:13.5px;line-height:22px;margin:0;max-width:56ch;color:#8d8a86">Signed by the oracle key named in this bounty's own datum, at the moment of resolution. You do not have to take our word for any of it.</p>
+                <button type="button" onClick="{{ verifyThis }}" style="margin-top:20px;font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:13px 18px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3);cursor:pointer;white-space:nowrap">Verify this resolution</button>
+              </div>
+              <svg width="150" height="150" viewBox="0 0 150 150" style="flex:none;display:block">
+                <circle cx="75" cy="75" r="62" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="11"></circle>
+                <circle cx="75" cy="75" r="62" fill="none" stroke="#ec3013" stroke-width="11" stroke-dasharray="389.6" stroke-dashoffset="{{ detail.dialOffset }}" transform="rotate(-90 75 75)" style="filter:drop-shadow(0 0 12px rgba(236,48,19,.9))"></circle>
+                <text x="75" y="72" text-anchor="middle" fill="#fff" style="font:800 36px var(--font-heading);letter-spacing:-0.03em">{{ detail.scoreText }}</text>
+                <text x="75" y="94" text-anchor="middle" fill="#8d8a86" style="font:600 9px var(--font-body);letter-spacing:0.16em">OF 100</text>
+              </svg>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="display:grid;gap:24px">
+        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.025);padding:22px">
+          <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:16px">Submissions</div>
+          <sc-for list="{{ detail.subs }}" as="s" hint-placeholder-count="1">
+            <div>
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;margin-bottom:8px;color:#fff">{{ s.who }}</div>
+              <div style="font-size:12.5px;line-height:21px;color:#8d8a86;margin-bottom:14px">{{ s.what }}</div>
+              <div style="display:grid;gap:9px">
+                <sc-for list="{{ s.steps }}" as="t" hint-placeholder-count="3">
+                  <div style="display:grid;grid-template-columns:64px minmax(0,1fr);gap:10px;align-items:baseline">
+                    <span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;color:#7d7a76">{{ t.label }}</span>
+                    <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;color:#ff9783">{{ t.hash }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ detail.noSubs }}" hint-placeholder-val="{{ false }}">
+            <p style="font-size:13px;line-height:22px;margin:0;color:#8d8a86">None yet. The first commitment to arrive is the first one evaluated — being fast is worth something here, being second to read someone else's work is worth nothing.</p>
+          </sc-if>
+        </div>
+        <div>
+          <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:12px">Escrow</div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;line-height:19px;word-break:break-all;color:#a5a29e">addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n</div>
+        </div>
+        <sc-if value="{{ detail.canSubmit }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ goSubmit }}" style="width:100%;font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 20px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 30px rgba(236,48,19,.45)">Submit work</button>
+        </sc-if>
+        <sc-if value="{{ detail.canAppeal }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid rgba(236,48,19,.4);background:rgba(236,48,19,.07);padding:18px">
+            <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#ff9783;margin-bottom:10px">Appeal open</div>
+            <p style="font-size:13px;line-height:22px;margin:0;color:#cfc9c4">The funds stayed in the contract precisely so the worker has something to appeal about. A failing verdict does not refund the poster on the spot.</p>
+          </div>
+        </sc-if>
+      </div>
+    </section>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isVerify }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Verify">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+    <section style="padding:52px 0 26px;max-width:62ch">
+      <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(32px,4.4vw,50px);line-height:1;letter-spacing:-0.04em;margin:0 0 16px;text-transform:uppercase;color:#fff">Check a verdict without trusting us</h1>
+      <p style="font-size:16px;line-height:27px;margin:0;color:#a5a29e">Paste the transaction that resolved a bounty. This page reads the oracle key from the datum locked at creation, pulls the verdict out of the spending transaction, rebuilds the signed digest and checks it against public chain data. It asks this site nothing — a verifier that trusts the party being verified proves nothing.</p>
+    </section>
+
+    <section style="padding:0 0 28px">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;max-width:860px">
+        <div style="flex:1;min-width:340px">
+          <label for="vd-tx" style="display:block;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:9px">Resolution transaction hash</label>
+          <input id="vd-tx" style="width:100%;padding:14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.18);border-radius:0" placeholder="f76999d7…" value="{{ tx }}" onChange="{{ onTx }}">
+        </div>
+        <button type="button" onClick="{{ runVerify }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 24px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 30px rgba(236,48,19,.45);white-space:nowrap">Verify</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;align-items:center">
+        <span style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#7d7a76">Try one</span>
+        <button type="button" onClick="{{ verifySettle }}" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;background:none;border:1px solid rgba(255,255,255,.18);padding:9px 13px;cursor:pointer;color:#cfc9c4;white-space:nowrap">a settlement that paid</button>
+        <button type="button" onClick="{{ verifyWithheld }}" style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;background:none;border:1px solid rgba(236,48,19,.45);padding:9px 13px;cursor:pointer;color:#ff9783;white-space:nowrap">a verdict that withheld</button>
+      </div>
+    </section>
+
+    <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+      <section style="padding:0 0 60px;max-width:62ch;animation:vd-rise 0.3s ease both">
+        <div style="border:1px solid rgba(236,48,19,.5);background:rgba(236,48,19,.08);padding:22px">
+          <h2 style="font-family:var(--font-heading);font-weight:800;font-size:20px;line-height:1.1;margin:0 0 10px;text-transform:uppercase;letter-spacing:-0.02em;color:#ff9783">Could not verify</h2>
+          <p style="font-size:15px;line-height:25px;margin:0;color:#cfc9c4">{{ verr }}</p>
+        </div>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ hasReport }}" hint-placeholder-val="{{ false }}">
+      <section style="padding:0 0 84px;animation:vd-fade 0.4s ease both">
+        <div style="border:1px solid rgba(255,255,255,.14);background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));padding:30px clamp(22px,3vw,34px)">
+          <div style="display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:34px clamp(28px,4vw,60px);align-items:start">
+            <div>
+              <div style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.2);padding:6px 11px;font:600 10px/1 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#cfc9c4;margin-bottom:18px"><span style="width:6px;height:6px;background:#ec3013;border-radius:50%;box-shadow:0 0 10px #ec3013"></span>{{ report.kicker }}</div>
+              <h2 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(24px,3vw,34px);line-height:1.02;letter-spacing:-0.03em;margin:0 0 18px;text-transform:uppercase;max-width:20ch;color:#fff">{{ report.headline }}</h2>
+              <p style="font-size:15.5px;line-height:26px;margin:0 0 14px;max-width:56ch;color:#cfc9c4">{{ report.blurb }}</p>
+              <p style="font-size:13.5px;line-height:22px;margin:0;max-width:56ch;color:#8d8a86">The same check runs from the command line against your own Blockfrost key, with this site switched off entirely.</p>
+            </div>
+            <div style="display:grid;gap:0">
+              <sc-for list="{{ report.facts }}" as="f" hint-placeholder-count="6">
+                <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:11px 0;border-top:1px solid rgba(255,255,255,.1)">
+                  <span style="color:#7d7a76">{{ f.label }}</span>
+                  <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">{{ f.value }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:36px">
+          <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#8d8a86;margin-bottom:10px">The evidence, in full</div>
+          <p style="font-size:13.5px;line-height:23px;margin:0 0 20px;max-width:60ch;color:#8d8a86">Nothing here is abbreviated. Every value below is what a second implementation would have to reproduce byte for byte to arrive at the same answer.</p>
+          <div style="border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.35);padding:6px 20px">
+            <sc-for list="{{ report.evidence }}" as="e" hint-placeholder-count="8">
+              <div style="display:grid;grid-template-columns:180px minmax(0,1fr);gap:20px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.07)">
+                <span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#7d7a76">{{ e.label }}</span>
+                <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:21px;word-break:break-all;color:#e9e7e4">{{ e.value }}</span>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSubmit }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Submit work">
+  <div style="max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.5vw,44px)">
+    <section style="padding:32px 0 0">
+      <button type="button" onClick="{{ goBoard }}" style="font:600 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;background:none;border:0;padding:0;cursor:pointer;color:#ff9783;white-space:nowrap">&larr; All bounties</button>
+    </section>
+    <section style="padding:20px 0 30px;max-width:62ch">
+      <div style="font:600 10px/1 var(--font-body);letter-spacing:0.16em;text-transform:uppercase;color:#8d8a86;margin-bottom:16px">Submit work &middot; $5.00 bounty</div>
+      <h1 style="font-family:var(--font-heading);font-weight:800;font-size:clamp(32px,4.4vw,50px);line-height:1;letter-spacing:-0.04em;margin:0 0 16px;text-transform:uppercase;color:#fff">Commit first.<br>Reveal second.</h1>
+      <p style="font-size:16px;line-height:27px;margin:0;color:#a5a29e">Your submission goes on chain as a hash before anyone can read it, so nobody watching the mempool can copy your deliverable and race you to the reward. When the commitment is confirmed you reveal the real thing, and the evaluator runs the criteria against it.</p>
+    </section>
+
+    <section style="padding:0 0 34px">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+          <div style="display:block">
+            <sc-if value="{{ s.active }}" hint-placeholder-val="{{ true }}">
+              <div style="border:1px solid rgba(236,48,19,.45);background:rgba(236,48,19,.08);padding:20px;box-shadow:0 0 40px rgba(236,48,19,.12) inset">
+                <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#ec3013;margin-bottom:12px">{{ s.n }}</div>
+                <h3 style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.12;margin:0 0 9px;text-transform:uppercase;letter-spacing:-0.02em;color:#fff">{{ s.title }}</h3>
+                <p style="font-size:14px;line-height:23px;margin:0;color:#cfc9c4">{{ s.body }}</p>
+              </div>
+            </sc-if>
+            <sc-if value="{{ s.idle }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.02);padding:20px">
+                <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;letter-spacing:0.1em;color:#7d7a76;margin-bottom:12px">{{ s.n }}</div>
+                <h3 style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.12;margin:0 0 9px;text-transform:uppercase;letter-spacing:-0.02em;color:#8d8a86">{{ s.title }}</h3>
+                <p style="font-size:14px;line-height:23px;margin:0;color:#7d7a76">{{ s.body }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="padding:0 0 92px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:38px clamp(28px,4vw,64px);align-items:start">
+      <div style="display:grid;gap:24px">
+        <sc-if value="{{ subStep1 }}" hint-placeholder-val="{{ true }}">
+          <div style="display:grid;gap:24px;animation:vd-fade 0.3s ease both">
+            <div>
+              <label for="vd-link" style="display:block;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:9px">Where the deliverable lives</label>
+              <input id="vd-link" style="width:100%;padding:13px 14px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13.5px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);border-radius:0" placeholder="https://github.com/…/pull/214" value="{{ link }}" onChange="{{ onLink }}">
+            </div>
+            <div>
+              <label for="vd-notes" style="display:block;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:9px">Notes for the evaluator</label>
+              <textarea id="vd-notes" style="width:100%;min-height:118px;padding:13px 14px;font-family:var(--font-body);font-size:15px;line-height:25px;color:#fff;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.16);border-radius:0;resize:vertical" placeholder="Point at the commit that satisfies each criterion." value="{{ notes }}" onChange="{{ onNotes }}"></textarea>
+              <p style="margin:9px 0 0;font-size:12px;line-height:20px;color:#7d7a76">Quoted behind an unpredictable nonce before any judgment criterion reads it. An attempt to instruct the evaluator marks the verdict for review; it never auto-passes.</p>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+              <button type="button" onClick="{{ commit }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:15px 22px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 30px rgba(236,48,19,.45);white-space:nowrap">Commit this submission</button>
+              <span style="font-size:12.5px;color:#7d7a76">Nothing readable goes on chain in this step.</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ subStep2 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:22px;animation:vd-rise 0.3s ease both">
+            <div>
+              <h2 style="font-family:var(--font-heading);font-weight:800;font-size:24px;line-height:1.06;margin:0 0 12px;text-transform:uppercase;letter-spacing:-0.03em;color:#fff">Committed. The chain knows a hash and nothing else.</h2>
+              <p style="font-size:15px;line-height:26px;margin:0;max-width:56ch;color:#a5a29e">Anyone can see that a submission exists and when it arrived. Nobody can see what it says, including the poster and including us. Your claim to this bounty is now timestamped ahead of anyone who copies you afterwards.</p>
+            </div>
+            <div style="border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.35);padding:4px 18px;max-width:62ch">
+              <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#7d7a76">Commitment</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:20px;word-break:break-all;color:#ec3013">{{ commitHash }}</span></div>
+              <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#7d7a76">Transaction</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:20px;word-break:break-all;color:#ff9783">c2ceeac5c0fa61397a17338032da5722d817b8144389e6459baec1c1fae58b3b</span></div>
+              <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:13px 0"><span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#7d7a76">Visible</span><span style="font-size:13.5px;color:#cfc9c4">The hash, the time, your address. Nothing else.</span></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <button type="button" onClick="{{ revealSub }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;background:#ec3013;color:#fff;border:0;cursor:pointer;white-space:nowrap">Reveal the submission</button>
+              <button type="button" onClick="{{ backToCommit }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24);cursor:pointer;white-space:nowrap">Edit before revealing</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ subStep3 }}" hint-placeholder-val="{{ false }}">
+          <div style="display:grid;gap:22px;animation:vd-rise 0.3s ease both">
+            <div>
+              <div style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(236,48,19,.5);padding:6px 11px;font:600 10px/1 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#ff9783;margin-bottom:16px"><span style="width:6px;height:6px;background:#ec3013;border-radius:50%;box-shadow:0 0 10px #ec3013;animation:vd-pulse 1.4s ease-in-out infinite"></span>Evaluation running</div>
+              <h2 style="font-family:var(--font-heading);font-weight:800;font-size:24px;line-height:1.06;margin:0 0 12px;text-transform:uppercase;letter-spacing:-0.03em;color:#fff">The criteria are running against your work now</h2>
+              <p style="font-size:15px;line-height:26px;margin:0;max-width:56ch;color:#a5a29e">Deterministic checks run first, in a sandbox with no network and no clock. Whatever they cannot decide goes to bounded judgment against the rubric that was hashed before you started. You will get a signed verdict either way, and it will be published whether or not it pays you.</p>
+            </div>
+            <div style="border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.35);padding:4px 18px;max-width:62ch">
+              <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08)"><span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#7d7a76">Reveal</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:20px;word-break:break-all;color:#ff9783">8e2eee043dce1ae6abcd3aa25d3d61dd59de1c5897f7977a928e9a6e150ecf45</span></div>
+              <div style="display:grid;grid-template-columns:110px minmax(0,1fr);gap:16px;padding:13px 0"><span style="font:600 9.5px/1.6 var(--font-body);letter-spacing:0.13em;text-transform:uppercase;color:#7d7a76">Matches</span><span style="font-size:13.5px;color:#cfc9c4">The commitment from step two, exactly</span></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:12px">
+              <button type="button" onClick="{{ goBoard }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:14px 20px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24);cursor:pointer;white-space:nowrap">Back to the board</button>
+              <button type="button" onClick="{{ backToCommit }}" style="font:600 11px/1 var(--font-body);letter-spacing:0.12em;text-transform:uppercase;background:none;border:0;padding:14px 4px;cursor:pointer;color:#ff9783;white-space:nowrap">Start over</button>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.025);padding:24px;display:grid;gap:20px">
+        <div>
+          <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:12px">Submitting against</div>
+          <div style="font-family:var(--font-heading);font-weight:800;font-size:18px;line-height:1.15;margin-bottom:10px;text-transform:uppercase;letter-spacing:-0.02em;color:#fff">Add a --json flag to the verifier CLI</div>
+          <div style="font-size:13px;line-height:22px;color:#8d8a86">Three criteria, all machine-checkable. Locked 20 August; the text has not moved since.</div>
+        </div>
+        <div style="display:grid;gap:0">
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Reward</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#fff">$5.00</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Staked</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#cfc9c4">15.000000 tADA</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;font-size:13.5px;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)"><span style="color:#7d7a76">Deadline</span><span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;color:#cfc9c4">29 August</span></div>
+        </div>
+        <p style="font-size:12.5px;line-height:21px;margin:0;color:#7d7a76">If two people commit, the earlier commitment is evaluated first. Being fast is worth something; being first to read someone else's work is worth nothing.</p>
+      </div>
+    </section>
+  </div>
+</div>
+</sc-if>
+
+<div style="border-top:1px solid rgba(255,255,255,.1)">
+  <div style="max-width:1280px;margin:0 auto;padding:18px clamp(18px,3.5vw,44px) 44px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 28px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:11px;color:#7d7a76">
+    <span>Cardano Preprod testnet &middot; nothing here uses real money</span>
+    <span>addr_test1wqcd5ka…hxur3n</span>
+    <span>Apache-2.0 &middot; source on GitHub</span>
+  </div>
+</div>
+
+<sc-if value="{{ postReview }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:24px;background:rgba(4,4,6,.82);backdrop-filter:blur(6px);animation:vd-fade 0.2s ease both">
+    <div style="width:min(640px,100%);border:1px solid rgba(236,48,19,.45);background:#0d0d11;box-shadow:0 0 80px rgba(236,48,19,.22);padding:28px;display:grid;gap:20px;animation:vd-rise 0.25s ease both">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#ff9783;margin-bottom:12px"><span style="width:6px;height:6px;background:#ec3013;border-radius:50%;box-shadow:0 0 10px #ec3013"></span>Last chance to change anything</div>
+        <div style="font-family:var(--font-heading);font-weight:800;font-size:23px;line-height:1.1;text-transform:uppercase;letter-spacing:-0.03em;color:#fff">These {{ criteriaCount }} lines become the standard, permanently</div>
+      </div>
+      <div style="display:grid;gap:0;max-height:230px;overflow:auto">
+        <sc-for list="{{ criteria }}" as="c" hint-placeholder-count="3">
+          <div style="display:grid;grid-template-columns:26px minmax(0,1fr);gap:12px;align-items:baseline;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.08)">
+            <span style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;color:#7d7a76">{{ c.n }}</span>
+            <div>
+              <div style="font-size:14.5px;line-height:23px;color:#e9e7e4">{{ c.text }}</div>
+              <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#7d7a76;margin-top:5px">{{ c.kindLabel }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div>
+        <div style="font:600 10px/1 var(--font-body);letter-spacing:0.14em;text-transform:uppercase;color:#8d8a86;margin-bottom:8px">Committed hash</div>
+        <div style="font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12px;line-height:19px;word-break:break-all;color:#ec3013">{{ liveHash }}</div>
+      </div>
+      <p style="margin:0;font-size:13.5px;line-height:23px;color:#a5a29e">After this, the only way to change the standard is to cancel the bounty at the deadline and post a new one. A submission you dislike is not grounds to edit a criterion, and the contract will not let you.</p>
+      <div style="display:flex;justify-content:flex-end;gap:10px">
+        <button type="button" onClick="{{ cancelReview }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:13px 18px;background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24);cursor:pointer;white-space:nowrap">Keep editing</button>
+        <button type="button" onClick="{{ confirmPost }}" style="font:800 12px/1 var(--font-heading);letter-spacing:0.06em;text-transform:uppercase;padding:13px 18px;background:#ec3013;color:#fff;border:0;cursor:pointer;box-shadow:0 0 30px rgba(236,48,19,.5);white-space:nowrap">Lock and post</button>
+      </div>
+    </div>
+  </div>
+</sc-if>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;gridBackdrop&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Atmosphere&quot;},&quot;showHonesty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Front page&quot;}}">
+class Component extends DCLogic {
+  state = {
+    screen: 'landing',
+    filter: 'All',
+    openId: 'withheld',
+    revealed: 0,
+    tx: '',
+    report: null,
+    verr: null,
+    subStep: 1,
+    link: '',
+    notes: '',
+    postStage: 'form',
+    spec: 'Port the CBOR encoder to a streaming writer so a 40 MB value can be encoded without holding the whole thing in memory.',
+    usd: '25',
+    stake: '80',
+    criteria: [
+      { text: 'pnpm test passes on the streaming encoder suite', check: true },
+      { text: 'The golden vectors digest to the committed root', check: true },
+      { text: 'The encoder writes incrementally and never buffers a whole value', check: false }
+    ]
+  };
+
+  hex64(seed) {
+    const out = [];
+    for (let i = 0; i < 8; i++) {
+      let h = (0x811c9dc5 ^ Math.imul(i + 1, 0x9e3779b9)) >>> 0;
+      for (let j = 0; j < seed.length; j++) {
+        h ^= seed.charCodeAt(j);
+        h = Math.imul(h, 0x01000193) >>> 0;
+      }
+      out.push(h.toString(16).padStart(8, '0'));
+    }
+    return out.join('');
+  }
+
+  go(screen) {
+    this.setState({ screen, postStage: screen === 'post' ? this.state.postStage : 'form' });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+
+  openBounty(id) {
+    this.setState({ screen: 'detail', openId: id, revealed: 0 });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+
+  showVerify(hash) {
+    this.setState({ screen: 'verify', tx: hash, report: this.reports()[hash], verr: null });
+    if (typeof window !== 'undefined') window.scrollTo(0, 0);
+  }
+
+  runVerify() {
+    const v = String(this.state.tx || '').trim().toLowerCase();
+    if (!v) return this.setState({ report: null, verr: 'Paste the transaction that resolved a bounty. Both examples on the front page work.' });
+    if (!/^[0-9a-f]{64}$/.test(v)) return this.setState({ report: null, verr: 'That is not a transaction hash. Preprod hashes are 64 hexadecimal characters, with no 0x prefix.' });
+    const rec = this.reports()[v];
+    if (!rec) return this.setState({ report: null, verr: 'No resolution with that hash exists on Preprod. The verifier reads the chain rather than this site, so a hash we have never heard of is simply absent from it.' });
+    this.setState({ report: rec, verr: null });
+  }
+
+  revealVerdict() {
+    const total = this.bounties()[this.state.openId].criteria.length;
+    const tick = (n) => {
+      this.setState({ revealed: n });
+      if (n < total) setTimeout(() => tick(n + 1), 260);
+    };
+    tick(1);
+  }
+
+  statusInk(group) {
+    if (group === 'Withheld') return { border: 'rgba(236,48,19,.55)', fill: 'rgba(236,48,19,.14)', ink: '#ff9783' };
+    if (group === 'Open') return { border: 'rgba(255,255,255,.30)', fill: 'transparent', ink: '#ffffff' };
+    if (group === 'Resolved') return { border: 'rgba(255,255,255,.20)', fill: 'rgba(255,255,255,.08)', ink: '#ffffff' };
+    return { border: 'rgba(255,255,255,.14)', fill: 'rgba(255,255,255,.03)', ink: '#a5a29e' };
+  }
+
+  bounties() {
+    return {
+      open5: {
+        id: 'open5', usd: '$5.00', title: 'Add a --json flag to the verifier CLI', status: 'Open', group: 'Open',
+        staked: '15.000000 tADA', criteriaShort: '74ecedc2…466ae1df', lockedAt: '20 August',
+        outcomeLabel: 'Deadline', outcomeValue: '29 August', score: 0, hasVerdict: false, canSubmit: true, canAppeal: false, noSubs: true,
+        criteriaNote: 'Committed 20 August and unchanged since. Weights were fixed at the same moment as the text, so anyone can work out what a passing submission is worth before starting.',
+        body: 'The verifier prints for humans, which makes it useless inside a CI job. This bounty asks for a --json flag that emits the three fields a machine actually reads — verdict, score, whether the funds moved — with a stable shape and a non-zero exit code on a failing verdict. All three criteria are machine-checkable, so no judgment enters into it at all.',
+        verdictHead: '', verdictBody: '', resolveTx: '',
+        criteria: [
+          { text: '--json emits an object with verdict, scoreBps and fundsReleased', kind: 'json_schema', weight: 45, pass: false, note: '' },
+          { text: 'The command exits non-zero when the verdict is a fail', kind: 'command', weight: 35, pass: false, note: '' },
+          { text: 'The existing human output is unchanged without the flag', kind: 'regex', weight: 20, pass: false, note: '' }
+        ],
+        subs: []
+      },
+      sub40: {
+        id: 'sub40', usd: '$40.00', title: 'Write the Blockfrost rate-limit backoff', status: 'Submitted', group: 'Submitted',
+        staked: '120.000000 tADA', criteriaShort: '4f12e77f…9a361163', lockedAt: '19 August',
+        outcomeLabel: 'Revealed', outcomeValue: '21 August', score: 0, hasVerdict: false, canSubmit: false, canAppeal: false, noSubs: false,
+        criteriaNote: 'Committed 19 August and unchanged since. A submission has been revealed and the evaluator is running these rows against it now.',
+        body: 'Under a burst the indexer returns 429 and the current client gives up, which turns a transient limit into a failed verification. The bounty asks for an exponential, jittered backoff with a provable ceiling, demonstrated against a four-hundred-request burst — three checkable criteria and one judgment criterion about whether the ceiling is genuinely bounded rather than merely large.',
+        verdictHead: '', verdictBody: '', resolveTx: '',
+        criteria: [
+          { text: 'A four-hundred-request burst completes with no dropped request', kind: 'command', weight: 30, pass: false, note: '' },
+          { text: 'Delays are jittered — no two retries share a schedule', kind: 'command', weight: 20, pass: false, note: '' },
+          { text: 'The retry ceiling is asserted in a test, not a comment', kind: 'regex', weight: 20, pass: false, note: '' },
+          { text: 'The backoff is bounded in principle, not merely large in practice', kind: 'judgment', weight: 30, pass: false, note: '' }
+        ],
+        subs: [{
+          who: 'addr_test1qzj6448…csx7sc75',
+          what: 'Committed 20 August, revealed 21 August. Awaiting the verdict.',
+          steps: [
+            { label: 'Commit', hash: '5eae0f535fc40bef…0f027bbf0' },
+            { label: 'Reveal', hash: '4db07395a0f2e9f0…52a32f3b06' }
+          ]
+        }]
+      },
+      com18: {
+        id: 'com18', usd: '$18.00', title: 'Schema-validate every replay bundle', status: 'Committed', group: 'Submitted',
+        staked: '50.000000 tADA', criteriaShort: '4f12e77f…9a361163', lockedAt: '20 August',
+        outcomeLabel: 'Committed', outcomeValue: '22 August', score: 0, hasVerdict: false, canSubmit: false, canAppeal: false, noSubs: false,
+        criteriaNote: 'Committed 20 August and unchanged since. One submission is committed but not yet revealed, so nothing about its contents is knowable — including by the poster.',
+        body: 'A replay bundle that does not validate is a bundle nobody can check, which defeats the point of publishing one. The bounty asks for schema validation at write time and at read time, with a fixture for every criterion kind the evaluator can emit, so a malformed bundle fails loudly at the moment it is produced rather than the moment someone tries to audit it.',
+        verdictHead: '', verdictBody: '', resolveTx: '',
+        criteria: [
+          { text: 'Every bundle written by the service validates against schema v2', kind: 'json_schema', weight: 30, pass: false, note: '' },
+          { text: 'A fixture exists for each criterion kind the evaluator emits', kind: 'file_exists', weight: 20, pass: false, note: '' },
+          { text: 'Validation runs on read as well as on write', kind: 'command', weight: 20, pass: false, note: '' },
+          { text: 'A malformed bundle fails the build rather than warning', kind: 'command', weight: 15, pass: false, note: '' },
+          { text: 'The schema is versioned and the version is recorded in the bundle', kind: 'regex', weight: 15, pass: false, note: '' }
+        ],
+        subs: [{
+          who: 'addr_test1qzj6448…csx7sc75',
+          what: 'Committed 22 August. Not yet revealed — the chain holds a hash and nothing else.',
+          steps: [{ label: 'Commit', hash: 'c2ceeac5c0fa6139…c1fae58b3b' }]
+        }]
+      },
+      paid: {
+        id: 'paid', usd: '$12.00', title: 'Fix the flaky parser test', status: 'Resolved · paid', group: 'Resolved',
+        staked: '60.000000 tADA', criteriaShort: '4428dc03…6763c75', lockedAt: '18 August',
+        outcomeLabel: 'Released', outcomeValue: '30.000000 tADA', score: 100, hasVerdict: true, canSubmit: false, canAppeal: false, noSubs: false,
+        criteriaNote: 'Committed 18 August and unchanged since. Weights were fixed at the same moment as the text — the verdict below is arithmetic over these rows, not an opinion about them.',
+        body: 'The parser test failed roughly one run in nine on CI and never locally, which is the worst kind of failure: not broken enough to block a release, broken enough to teach everyone to ignore a red build. The bounty asked for the race to be found and closed, with the flake reproduced in a test that fails before the fix and passes after it.',
+        verdictHead: 'Five of five, and the escrow paid itself',
+        verdictBody: 'The signed verdict scored 100 out of 100 against the locked rubric. The contract read the ADA/USD feed as a reference input at $0.4000, computed $12.00 as exactly 30.000000 tADA, released that to the worker and returned the 30 tADA surplus to the poster. No one approved it; the arithmetic did.',
+        resolveTx: 'f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1',
+        criteria: [
+          { text: 'pnpm test -- src/parser.test.ts passes twenty consecutive runs', kind: 'command', weight: 30, pass: true, note: '' },
+          { text: 'The suite exits zero on Node 20 and Node 22', kind: 'command', weight: 20, pass: true, note: '' },
+          { text: 'A regression test names the race it covers', kind: 'file_exists', weight: 15, pass: true, note: '' },
+          { text: 'No test is skipped, and none is marked .only', kind: 'regex', weight: 15, pass: true, note: '' },
+          { text: 'The fix addresses the race rather than the symptom', kind: 'judgment', weight: 20, pass: true, note: 'The shared buffer is now owned by the reader; the retry loop that hid the flake was deleted rather than tuned.' }
+        ],
+        subs: [{
+          who: 'addr_test1qzj6448…csx7sc75',
+          what: 'Committed 19 August, revealed 20 August, resolved the same hour.',
+          steps: [
+            { label: 'Commit', hash: '09a8acbaad5df600…a540b7272' },
+            { label: 'Reveal', hash: 'ef0545e961964070…d4afeacea' },
+            { label: 'Resolve', hash: 'f76999d78f611e51…b1d3b0b1' }
+          ]
+        }]
+      },
+      withheld: {
+        id: 'withheld', usd: '$25.00', title: 'Port the CBOR encoder to a streaming writer', status: 'Payout withheld', group: 'Withheld',
+        staked: '25.000000 tADA', criteriaShort: 'aa101de4…a7dae537', lockedAt: '19 August',
+        outcomeLabel: 'Still locked', outcomeValue: '25.000000 tADA', score: 42, hasVerdict: true, canSubmit: false, canAppeal: true, noSubs: false,
+        criteriaNote: 'Committed 19 August and unchanged since. Weights were fixed at the same moment as the text — the verdict below is arithmetic over these rows, not an opinion about them.',
+        body: 'The encoder held every value in memory before writing a byte, which is survivable for a datum and fatal for a replay bundle. The bounty asked for an incremental writer with the same output, proved against the committed golden vectors — the criteria were written to be checkable by a machine precisely so that the answer would not come down to anyone\u2019s reading of the diff.',
+        verdictHead: 'Forty-two out of a hundred. The reward stayed where it was.',
+        verdictBody: 'Three criteria passed and two did not, and the two that failed carried more than half the weight between them. The escrow read the signed verdict and declined to release the reward. Note what it did not do: it did not refund the poster either. The 25.000000 tADA sit in the contract, in state Resolved, so the worker has something to appeal about.',
+        resolveTx: 'c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee',
+        criteria: [
+          { text: 'pnpm test passes on the streaming encoder suite', kind: 'command', weight: 20, pass: true, note: '' },
+          { text: 'src/cbor/stream.ts exists and is exported from the package index', kind: 'file_exists', weight: 10, pass: true, note: '' },
+          { text: 'The golden vectors digest to the committed root', kind: 'hash_match', weight: 25, pass: false, note: 'Digests diverge at the four-byte length prefix on indefinite-length arrays. Twelve of forty vectors differ; the rest match exactly.' },
+          { text: 'The replay bundle validates against schema v2', kind: 'json_schema', weight: 12, pass: true, note: '' },
+          { text: 'The encoder writes incrementally and never buffers a whole value', kind: 'judgment', weight: 33, pass: false, note: 'Chunks are collected into an array and written in one call at the end, which is the behaviour the bounty existed to remove. Evidence: encoder.ts lines 88 to 140, quoted in full in the replay bundle.' }
+        ],
+        subs: [{
+          who: 'addr_test1qzj6448…csx7sc75',
+          what: 'Committed 20 August, revealed 21 August, resolved 21 August.',
+          steps: [
+            { label: 'Commit', hash: 'ad9a676aa48af210…2bfc3b096' },
+            { label: 'Reveal', hash: '01676ba1d95bf49c…a30c1eb00' },
+            { label: 'Resolve', hash: 'c1bee46bd021ffbc…f8185a4ee' }
+          ]
+        }]
+      }
+    };
+  }
+
+  rowData() {
+    return [
+      { id: 'open5', usd: '$5.00', title: 'Add a --json flag to the verifier CLI', status: 'Open', note: 'No submissions yet', staked: '15.000000 tADA', tx: '09617a21…6e343d31', criteria: '74ecedc2…466ae1df', crit: 3, checkable: 3, group: 'Open' },
+      { id: 'sub40', usd: '$40.00', title: 'Write the Blockfrost rate-limit backoff', status: 'Submitted', note: 'Revealed, awaiting verdict', staked: '120.000000 tADA', tx: '11d62c13…7748d6f9', criteria: '4f12e77f…9a361163', crit: 4, checkable: 3, group: 'Submitted' },
+      { id: 'com18', usd: '$18.00', title: 'Schema-validate every replay bundle', status: 'Committed', note: 'On chain, not yet revealed', staked: '50.000000 tADA', tx: '5eae0f53…f027bbf0', criteria: '4f12e77f…9a361163', crit: 5, checkable: 4, group: 'Submitted' },
+      { id: 'paid', usd: '$12.00', title: 'Fix the flaky parser test', status: 'Resolved · paid', note: 'Released 30.000000 tADA', staked: '60.000000 tADA', tx: '95805b36…deb3fd5b', criteria: '4428dc03…e6763c75', crit: 5, checkable: 4, group: 'Resolved' },
+      { id: 'withheld', usd: '$25.00', title: 'Port the CBOR encoder to a streaming writer', status: 'Payout withheld', note: '25.000000 tADA still in the contract', staked: '25.000000 tADA', tx: 'c1bee46b…f8185a4ee', criteria: 'aa101de4…a7dae537', crit: 5, checkable: 4, group: 'Withheld' }
+    ];
+  }
+
+  reports() {
+    return {
+      f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1: {
+        kicker: 'Signature valid · funds moved',
+        headline: 'The reward was released, and it was released correctly',
+        blurb: 'The key named in the bounty\u2019s own datum signed this exact verdict, for this bounty and this submission. The verdict passed, and the funds left the contract — which is what a passing verdict requires. A passing verdict that had not moved the money would fail this check just as loudly.',
+        facts: [
+          { label: 'Verdict', value: 'PASS' },
+          { label: 'Score', value: '10000 bps' },
+          { label: 'Signature', value: 'valid' },
+          { label: 'Criteria bound', value: 'yes' },
+          { label: 'Funds', value: 'released' },
+          { label: 'Settled', value: '30.000000 tADA' }
+        ],
+        evidence: [
+          { label: 'Resolution tx', value: 'f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1' },
+          { label: 'Bounty UTxO', value: '9c1e6ae6fe9c8e97eacf87310f6cb801fb122f6b26331560a048259098adb52d#0' },
+          { label: 'Oracle key', value: '9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a' },
+          { label: 'Criteria hash', value: '4428dc03a1c655124c329cd6cd05f14bcae84070681c3b1de9baca7ee6763c75' },
+          { label: 'Submission hash', value: '8e2eee043dce1ae6abcd3aa25d3d61dd59de1c5897f7977a928e9a6e150ecf45' },
+          { label: 'Evidence root', value: '74ecedc2f57b734c6b1a9ea0750355eac6cfd10941675fc5b6e131cc466ae1df' },
+          { label: 'Feed statement', value: '5f27b2d87fd8bd49cb51c2a02cc1495313b72a80b1e5f7562192b250edb79650' },
+          { label: 'Script address', value: 'addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n' }
+        ]
+      },
+      c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee: {
+        kicker: 'Signature valid · funds did not move',
+        headline: 'The payout was withheld, and withholding it was correct',
+        blurb: 'The signature checks out, the verdict is bound to the criteria hash that was locked before any submission arrived, and the funds stayed in the contract — which is what a failing verdict requires. This transaction is a record of an escrow refusing to pay, and refusing in a way anyone can re-derive from public data.',
+        facts: [
+          { label: 'Verdict', value: 'FAIL' },
+          { label: 'Score', value: '4200 bps' },
+          { label: 'Signature', value: 'valid' },
+          { label: 'Criteria bound', value: 'yes' },
+          { label: 'Funds', value: 'still in contract' },
+          { label: 'Held', value: '25.000000 tADA' }
+        ],
+        evidence: [
+          { label: 'Resolution tx', value: 'c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee' },
+          { label: 'Bounty UTxO', value: 'a510617da0d7d92055ca60a82cb70103675b8be9fc5726d5e60b6dae9c1754ec#0' },
+          { label: 'Oracle key', value: '9eac2a9521d29598c0566e5f670b86c6d3dd74d90c12f7fc0991aabc45fadc3a' },
+          { label: 'Criteria hash', value: 'aa101de4ebf992d92769f222b848644d2ec17bf93388141c513fdc24a7dae537' },
+          { label: 'Submission hash', value: '01676ba1d95bf49ca8ef57d73da2031dc36d895fa01e8f067e94b80a30c1eb00' },
+          { label: 'Evidence root', value: '4f12e77fddef1e9bef9dcb63445baab240df9d21715414568a83639f9a361163' },
+          { label: 'Commitment', value: 'ad9a676aa48af2104775afa8c0ec6d8bc3b7c889825694c8ff2fcad2bfc3b096' },
+          { label: 'Script address', value: 'addr_test1wqcd5kag09lufc6v2w6tk7twcf4jkfmfvcksdg6n65c6rkchxur3n' }
+        ]
+      }
+    };
+  }
+
+  renderVals() {
+    const s = this.state;
+    const screen = s.screen;
+    const showHonesty = this.props.showHonesty ?? true;
+    const gridBackdrop = this.props.gridBackdrop ?? true;
+    const criteriaKindNotes = {
+      check: 'Run in a sandbox — a command, a file check, a schema, a hash. Re-runnable by anyone.',
+      judge: 'Bounded judgment against this rubric, with the reasoning published as evidence.'
+    };
+
+    const detailRec = this.bounties()[s.openId] || this.bounties().withheld;
+    const revealed = detailRec.hasVerdict ? s.revealed : 0;
+    const detailCriteria = detailRec.criteria.map((c, i) => ({
+      n: String(i + 1).padStart(2, '0'),
+      text: c.text,
+      kind: c.kind,
+      weight: c.weight,
+      showPass: i < revealed && c.pass,
+      showFail: i < revealed && !c.pass,
+      hidden: i >= revealed,
+      showNote: i < revealed && !!c.note,
+      note: c.note
+    }));
+
+    const rows = this.rowData()
+      .filter((r) => s.filter === 'All' || r.group === s.filter)
+      .map((r) => ({ ...r, dark: this.statusInk(r.group), open: () => this.openBounty(r.id) }));
+
+    const criteriaText = s.criteria.map((c) => (c.check ? 'D|' : 'J|') + c.text).join('\n');
+    const checkable = s.criteria.filter((c) => c.check).length;
+    const usdNum = Number(s.usd) || 0;
+    const stakeNum = Number(s.stake) || 0;
+
+    return {
+      isLanding: screen === 'landing',
+      isBoard: screen === 'board',
+      isPost: screen === 'post',
+      isDetail: screen === 'detail',
+      isVerify: screen === 'verify',
+      isSubmit: screen === 'submit',
+      showHonesty,
+      gridBackdrop,
+      heroDialOffset: (339.3 * (1 - 0.42)).toFixed(1),
+
+      goLanding: () => this.go('landing'),
+      goBoard: () => this.go('board'),
+      goPost: () => this.go('post'),
+      goVerify: () => this.go('verify'),
+      goSubmit: () => this.go('submit'),
+      openWithheld: () => this.openBounty('withheld'),
+      verifySettle: () => this.showVerify('f76999d78f611e511e260e73116f3a8f9d42864b2bfb3b246a99b3d7b1d3b0b1'),
+      verifyWithheld: () => this.showVerify('c1bee46bd021ffbc7459bd9262ba5a0d477629ee842c6ecf86152fdf8185a4ee'),
+      verifyThis: () => this.showVerify(detailRec.resolveTx),
+
+      filters: ['All', 'Open', 'Submitted', 'Resolved', 'Withheld'].map((f) => ({
+        label: f, on: s.filter === f, off: s.filter !== f, pick: () => this.setState({ filter: f })
+      })),
+      rows,
+      noRows: rows.length === 0,
+      rowCount: rows.length === 1 ? '1 bounty' : rows.length + ' bounties',
+
+      spec: s.spec,
+      usd: s.usd,
+      stake: s.stake,
+      onSpec: (e) => this.setState({ spec: e.target.value }),
+      onUsd: (e) => this.setState({ usd: e.target.value }),
+      onStake: (e) => this.setState({ stake: e.target.value }),
+      stakeNote: stakeNum * 0.4 >= usdNum
+        ? 'Comfortably above the reward at today\u2019s price. Anything left over comes back to you.'
+        : 'Below the reward at today\u2019s price — if ADA does not rise, the worker receives everything staked and no more.',
+      usdLabel: '$' + usdNum.toFixed(2),
+      stakeLabel: stakeNum.toFixed(6) + ' tADA',
+      impliedAda: (usdNum / 0.4).toFixed(6) + ' tADA',
+      criteriaCount: s.criteria.length,
+      checkableNote: checkable + ' of ' + s.criteria.length + ' machine-checkable',
+      liveHash: this.hex64(criteriaText),
+      criteria: s.criteria.map((c, i) => ({
+        n: String(i + 1).padStart(2, '0'),
+        text: c.text,
+        kindLabel: c.check ? 'Checkable' : 'Judgment',
+        kindNote: c.check ? criteriaKindNotes.check : criteriaKindNotes.judge,
+        onText: (e) => {
+          const v = e.target.value;
+          this.setState((st) => ({ criteria: st.criteria.map((x, j) => (j === i ? { ...x, text: v } : x)) }));
+        },
+        toggle: () => this.setState((st) => ({ criteria: st.criteria.map((x, j) => (j === i ? { ...x, check: !x.check } : x)) })),
+        remove: () => this.setState((st) => ({ criteria: st.criteria.length > 1 ? st.criteria.filter((_, j) => j !== i) : st.criteria }))
+      })),
+      addCriterion: () => this.setState((st) => ({ criteria: [...st.criteria, { text: '', check: true }] })),
+      postForm: s.postStage === 'form',
+      postReview: s.postStage === 'review',
+      postDone: s.postStage === 'done',
+      review: () => this.setState({ postStage: 'review' }),
+      cancelReview: () => this.setState({ postStage: 'form' }),
+      confirmPost: () => { this.setState({ postStage: 'done' }); if (typeof window !== 'undefined') window.scrollTo(0, 0); },
+      resetPost: () => this.setState({ postStage: 'form' }),
+
+      detail: {
+        ...detailRec,
+        dark: this.statusInk(detailRec.group),
+        criteria: detailCriteria,
+        scoreText: String(detailRec.score),
+        dialOffset: (389.6 * (1 - detailRec.score / 100)).toFixed(1)
+      },
+      canReveal: detailRec.hasVerdict && revealed === 0,
+      revealedAll: detailRec.hasVerdict && revealed >= detailRec.criteria.length,
+      noVerdictYet: !detailRec.hasVerdict,
+      reveal: () => this.revealVerdict(),
+
+      tx: s.tx,
+      onTx: (e) => this.setState({ tx: e.target.value }),
+      runVerify: () => this.runVerify(),
+      report: s.report || { kicker: '', headline: '', blurb: '', facts: [], evidence: [] },
+      hasReport: !!s.report,
+      hasError: !!s.verr,
+      verr: s.verr,
+
+      steps: [
+        { n: '01 / COMMIT', title: 'Commit', body: 'A hash of your deliverable and notes goes on chain. Readable by nobody, timestamped for everybody.', active: s.subStep >= 1, idle: s.subStep < 1 },
+        { n: '02 / CONFIRM', title: 'Confirm', body: 'The commitment settles. Your claim on this bounty now predates anyone who copies your work from here on.', active: s.subStep >= 2, idle: s.subStep < 2 },
+        { n: '03 / REVEAL', title: 'Reveal', body: 'You publish the real submission. It must hash to the commitment, or the contract rejects it outright.', active: s.subStep >= 3, idle: s.subStep < 3 }
+      ],
+      subStep1: s.subStep === 1,
+      subStep2: s.subStep === 2,
+      subStep3: s.subStep === 3,
+      link: s.link,
+      notes: s.notes,
+      onLink: (e) => this.setState({ link: e.target.value }),
+      onNotes: (e) => this.setState({ notes: e.target.value }),
+      commit: () => this.setState({ subStep: 2 }),
+      revealSub: () => this.setState({ subStep: 3 }),
+      backToCommit: () => this.setState({ subStep: 1 }),
+      commitHash: this.hex64((s.link || 'deliverable') + '|' + (s.notes || 'notes'))
+    };
+  }
+}
+</script>
+</body>
+</html>
